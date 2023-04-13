@@ -17,37 +17,71 @@ You will use UI Builder to open a starter workspace experience created from App 
 * Updating ServiceNow records from the experience
 * Working with the Standard Record Page template
 
+## Lab Objective
+
+The primary objective of this lab is to expose you to the different parts of configuring and customizing a workspace. A very basic fleet vehicle management workspace exists in your instance and you will configure it similarly to how you would configure one of ServiceNow's default workspaces.
 
 ## (Optional) Pre-flight check
 
 If you're doing this lab during CreatorCon, you'll be working on an instance on NowLearning loaded with the FLeet Vehicle Management application. If you're following along with this lab guide on a Personal Developer Instance (PDI), please follow the instructions in the Appendix at the end of this lab guide to learn how to pull in the Fleet Vehicle Management application.
 
-# Exercise 0 - Get Familiar with the Fleet Vehicle Management App
+# Exercise 1 - Basic Workspace Configuration
 
-## Goal
-
-In your instance, you will find a Fleet Vehicle Management app with some tables loaded with data. Let's take a look.
+## Open the app
 
 1. In the top menu in your instance, click **All**, type *App Engine* into the filter, and click **App Engine Studio** to launch *App Engine Studio*, or *AES* as we'll call it moving forward.
 
     image
 
-2. The app currently consists of:
+  The app currently consists of the following primary tables:
 
-    * Data (tables)
-      * Vehicle
-      * etc.
-    * Experiences
-      * Recipe DB (Portal experience)
-      * New Recipe (Record producer)
+     * Vehicle
+     * Maintenance requests
+     * Maintenance tasks
+     * Parts
 
+1. Open UI Builder by clicking on the **Fleet Vehicle Management** workspace under *Experiences*.
 
-# Exercise 1 - Configure the landing page
+  ![](images/2023-03-17-10-23-19.png)
 
-# Exercise 2 - Create a Standard Record Page from a template
+## Consolidate lists
 
-# Exercise 3 - Add an overview tab to the SRP
+Instructions on how to consolidate the lists
 
-# Exercise 4 - Create a declarative action
+## Configure the form
 
-# Exercise 5 - Configure additional lists
+The activity stream component shows up when you add the formatter to the form. Add the formatter, work notes, and comments to the form and see what happens. Then add the email client.
+
+# Exercise 2 - Enhance the experience home page
+
+High mileage vehicles
+
+Vehicle typeahead search
+
+# Exercise 3 - Enhance the Record Page for Vehicles
+
+## Create a variant for Vehicles
+
+## Edit secondary items in header
+
+## Add an overview tab to the variant
+
+# Add contextual sidebar content
+
+# Exercise 4 - Create actions and buttons
+
+## Add a close task button
+
+Create a UI Action and associate it with the table
+
+## Open a new request from the overview tab
+
+# Exercise 5 - Miscellaneous
+
+## Do something with UX Page Properties to show how they work
+
+## Record watcher
+
+## User experience analytics
+
+# Challenge Exercise
