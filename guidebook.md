@@ -301,7 +301,7 @@ Now you're going to add a vehicle search to the homepage so the dispatcher can e
 
 1. Click **Apply**.
 
-1. You're going to display search results inside the Vechile container, but first you're going to show/hide that container based on whether the searchTerm parameter is empty or not. Click on the **Vechile container (flex)** in the content tree.
+1. You're going to display search results inside the Vechile container, but first you're going to show/hide that container based on whether the searchTerm parameter is empty or not. Click on the **Vehicle container (flex)** in the content tree.
 
 1. In the config panel for the container on the right, there is a very small eye icon at the top right of the panel that toggles the component visibility properties. Click it.
 
@@ -317,19 +317,166 @@ Now you're going to add a vehicle search to the homepage so the dispatcher can e
 
 ## Add vehicle search results
 
+Now you'll configure the search results. You're going to use a data resource and repeater rather than another list component to expose a different method of showing a list of records. 
 
+1. First you'll need a data resource. Click the data icon at the bottom left of the page.
 
-## Do some styling 
+    ![](images/2023-04-21-08-49-30.png)
+
+1. In the Data panel that comes up, choose **+Add**, search for **look up records**, choose the **Look up records** data resource and click **Add**.
+
+    ![](images/2023-04-21-08-50-31.png)
+
+1. Fill out the data resource as follows:
+
+    * Use the (i) to change the label to **Look Up Vehicles** and the ID to **look_up_vehicles**.
+    * When to evaluate this data resource: Only when invoked (explicit)
+    * Table: Vehicle
+    * Edit conditions: **Vehicle name | contains | <ddb> @state.searchTerm** OR **License plate | contains | <ddb> @state.searchTerm**
+    * Return fields: **Vehicle name | license_plate**
+    * Order by: Vehicle name
+    * Max results: 10
+
+1. Since you selected that the data resource is only evaluted when invoked, you'll need to trigger a refresh when someone searches. Click into the **Search input 1** component, click on its events tab, and add another event handler to the *Search executed* event.
+
+1. Under *Look up vehicles* choose **Refresh** and click **Add**.
+
+2. Now add a new container component within the Vehicle container and set it to:
+
+    * Component label: (click the i icon) List header container
+    * Type: Grid
+    * Columns: 3
+    * Rows: 1
+    * Padding: Lg (1rem)
+
+3. Add a stylized text component within the container component and fill it out:
+
+    * Text: Vehicle name
+    * HTML tag: H2
+
+4. Duplicate the stylized text component you just added and set the text to **License plate**.
+
+5. Right-click **List header container (Grid)**, choose add component after, and add a **Repeater** component.
+
+6. In the Repeater's config panel, change the *Data array* property to dynamic data binding and enter: @data.look_up_vehicles.results. You should see a little green 10 next to the repeater component in the content tree since you're returning 10 results from the data resource.
+
+7. Add another **Container** inside the repeater calling it **List container** and styling it the same as the *List header container* from the last step.
+
+8. Within that container add a stylized text component with the following values:
+
+    * Text: **@item.value.vehicle_name.value**
+    * HTML tag: **H4**
+
+9.  Duplicate that stylized text component to another and give it text of: **@item.value.license_plate.value**
+
+10. Add a **Buton** component after the stylized text component with the following values:
+
+    * Label: **Create New Maint Request**
+    * <click into styles tab> Padding: **Lg (1rem)**
+
+11. In the *Events* tab add a new event handler to the *Button clicked* event.
+
+12. Choose **Link to destination** and change the *Mode* from *Form* to **Script**.
+
+    ![](images/2023-04-21-09-47-01.png)
+
+13. You'll paste the following script from [Exercise2.txt](files/Exercise2.txt):
+
+    ```javascript
+    /**
+    * @param {params} params
+    * @param {api} params.api
+    * @param {any} params.event
+    */
+    function evaluateEvent({api, event}) {
+        return {
+            route: 'record',
+            fields: {
+                'table': 'x_snc_flt_mgmt_maint_req',
+                'sysId': -1
+            },
+            params: {
+                'query': 'vehicle=' + api.item.value._row_data.uniqueValue
+            },
+            redirect: null,
+            passiveNavigation: null,
+            title: null,
+            multiInstField: null,
+            targetRoute: null,
+            external: null
+        };
+    }
+    ```
+
+    > You're using a script for this in order to build the query param. You can pass a query to the record page to prepopulate values, similar to the classic environment.
+
+14. Click **Apply** and **Save** the page.
+
+15. Open the page in the runtime and test it. Search for a Ford Mustang and click the **Create New Maint Request** button. It should open the request in a new tab while prepopulating the vehicle record in the request.
+
+This isn't the prettiest page in the world, and maybe even isn't all that practical, but hopefully it gives you an idea of some of what you can accomplish on a landing page like this. 
+
+## Do some styling?
 
 <!-- Have to wait until Patch 2 is avails -->
 
 # Exercise 3 - Enhance the Record Page for Vehicles
 
+The next requirement is to customize the vehicle record page and give it an overview tab. Right now there is just one generic record page variant, so you'll create a new variant specifically for vehicles and edit that.
+
 ## Create a variant for Vehicles
 
-## Edit secondary items in header
+1. Using the page picker dropdown, open the **Record** variant of the record page.
+
+    ![](images/2023-04-21-10-01-03.png)
+
+2. Use the hamburger icon at the top left of the page and choose **Duplicate variant**.
+
+    ![](images/2023-04-21-10-05-25.png)
+
+3. Name it **Vehicle Record**, set the conditions to **table=x_snc_flt_mgmt_vehicle**, and choose **Create**.
+
+4. Click the **Settings** toggle at the top of the builder window, change the *Order* to **-10**, and **Save**.
 
 ## Add an overview tab to the variant
+
+Now you'll add an overview tab to this page showing an over view of the record so you don't need to click into the details or related lists unless something needs to be updated.
+
+1. In the content tree, click **Main Tab**.
+
+1. In the Config panel, click **+Add** next to the Tabs property.
+
+    ![](images/2023-04-21-10-20-01.png)
+
+1. Choose **Start from an empty container** and click **Next**.
+
+    > If this was a tab we wanted to reuse on another page we might use a page collection instead which allows you to create a subpage which can be used in other tabsets.
+
+2. Label it **Overview**, choose **No icon**, and click **Create**.
+
+3. Now you're going to create a new GraphQL data resource to return data about the vehicle and related records. For some of this data you could tap into the existing record controller, but it doesn't have all of the data around the related records you're going to need. Open the **Data** panel.
+
+1. Click **+Add**, search **get vehicle**, choose **Get Vehicle Info GQL**, and click **Add**.
+
+    ![](images/2023-04-21-14-19-18.png)
+
+1. In the data resource properties, set the *Vehicle SysID* property to **@context.props.sysId**.
+
+<!-- restart here -->
+
+2. Back in the Config panel of the Main Tab component use the 2x3 vertical dots icon to drag the **Overview** tab above the *Details* tab.
+
+    ![](images/2023-04-21-10-24-45.png)
+
+3. In the content tree on the left, add a new container component to the *Overview (Flex)* tab under the *Main Tab* and label it **Vehicle Info**. Set its styles as follows:
+
+    * Type: **Grid**
+    * Columns: **2**
+    * Rows: **1**
+
+4. Duplicate that container and call the new one **Related Record Info**.
+
+
 
 # Add contextual sidebar content
 
@@ -342,6 +489,8 @@ Create a UI Action and associate it with the table
 ## Open a new request from the overview tab
 
 # Exercise 5 - Miscellaneous
+
+## 
 
 ## Do something with UX Page Properties to show how they work
 
