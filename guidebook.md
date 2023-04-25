@@ -454,16 +454,6 @@ Now you'll add an overview tab to this page showing an over view of the record s
 
 2. Label it **Overview**, choose **No icon**, and click **Create**.
 
-3. Now you're going to create a new GraphQL data resource to return data about the vehicle and related records. For some of this data you could tap into the existing record controller, but it doesn't have all of the data around the related records you're going to need. Open the **Data** panel.
-
-1. Click **+Add**, search **get vehicle**, choose **Get Vehicle Info GQL**, and click **Add**.
-
-    ![](images/2023-04-21-14-19-18.png)
-
-1. In the data resource properties, set the *Vehicle SysID* property to **@context.props.sysId**.
-
-<!-- restart here -->
-
 2. Back in the Config panel of the Main Tab component use the 2x3 vertical dots icon to drag the **Overview** tab above the *Details* tab.
 
     ![](images/2023-04-21-10-24-45.png)
@@ -476,9 +466,105 @@ Now you'll add an overview tab to this page showing an over view of the record s
 
 4. Duplicate that container and call the new one **Related Record Info**.
 
+1. In the Vehicle info container, add an **Image** component.
 
+1. It's going to try to use the record controller, but we want to feed it other data than it's expecting, so at the top of the config panel change the dropdown to **None**.
 
-# Add contextual sidebar content
+    ![](images/2023-04-21-16-41-36.png)
+
+1. Choose **Remove** in the popup.
+
+1. Set the *Image source* property to **@data.record.form.fields.image.displayValue**. This is data that is already being served to the page, since the image field is on the vehicle form already.
+
+1. Right click on the Image component in the content tree and add a **Container** component after it.
+
+1. Configure the container as follows:
+
+    * Type: **Grid**
+    * Columns: **2**
+    * Rows: **1**
+    * Padding: **Lg (1rem)**
+
+1. Add a stylized text component in the container and remove the preset like you did with the image component and then configure it:
+
+    * Text: *Mileage**
+    * HTML Tag: **H2**
+
+2. Duplicate the stylized text component and change the text property to: **@data.record.form.fields.mileage.displayValue**
+
+1. Now do the same thing with 4 more stylized text components for: 
+
+    * Next Tire Rotation: @data.record.form.fields.next_tire_rotation.displayValue
+    * Next Oil Change: @data.record.form.fields.next_oil_change.displayValue
+
+    Your container grid should look something like this:
+
+    ![](images/2023-04-21-20-41-03.png)
+
+    And your page should look something like this (possibly with different values/vehicle):
+
+    ![](images/2023-04-21-20-41-48.png)
+
+2. **Save** the page and preview it. Does your overview tab show up?
+
+3. Now you're going to add a custom GraphQL data resource to return data about the related records so you can give a real overview of the history of the vehicle on the overview tab. Open the **Data** panel. 
+
+4. Click **+Add**, search **get vehicle**, choose **Get Vehicle Info GQL**, and click **Add**.
+
+    ![](images/2023-04-21-14-19-18.png)
+
+5. In the data resource properties, set the *Vehicle SysID* property to **@context.props.sysId**.
+
+    ![](images/2023-04-21-16-37-01.png)
+
+    > Note: If you're curious about GraphQL, this application has an enitre GraphQL API setup for it and this data resource does one API call that easily grabs data from four different tables in a very performant way.
+
+6. Add two containers, one after the other, within the *Related Record Info* container. Name them the following:
+
+    * Maint requests (maint_requests)
+    * Parts (parts)
+
+    ![](images/2023-04-25-09-27-04.png)
+
+7. Now you will build out a list of requests and their respective tasks. In the *Maint requests* container, add a stylized text container.
+
+1. Use the preset dropdown to remove the preset and set the text property to: **Maintenance Requests**.
+
+1. Add a repeater component after the stylized text.
+
+1. Change the *Data array* property to dynamic data binding and then set it to: **@data.get_vehicle_info_gql_1.output.data.xSncFltMgmt.fleet.vehicle.maintReqs**. This should give you a 2 in the green label next to the repeater component.
+
+1. Click into the styles tab for the repeater and click **Enable styles**. This turns the repeater into a container.
+
+2. Add a stylized text component within the repeater. You're going to use a formula to set this stylized text in order to simplify things a bit.
+
+1. Switch the *Text* prop to dynamic data binding and then use the CONCAT formula to pull in multiple values: **CONCAT(@item.value.number, ": ", @item.value.shortDescription)**. Set the *HTML tag* to **H3**.
+
+1. Add a **Repeater** component after the stylized text component within the existing repeater.
+
+    > Now you're going to display tasks within the requests. This is really where you start to see the value of having an overview tab like this. You get fields and related records by default, but if your data model is a little more complex than that it's going to involve a lot of clicking. Also, many times when someone navigates to a form they really only need to take a look at the record rather than updating anything. This lets you display lots of information for that type of person without cluttering up the actual form.
+
+2. Set the *Data array* prop to **@item.value.maintTasks**.
+
+1. Click into the styles tab and add the following to the CSS styles:
+
+    ```css
+   * {
+       margin-left: 3rem;
+   }
+    ```
+
+2. Add a stylized text component within the repeater.
+
+3. Switch the *Text* prop to dynamic data binding and then use the CONCAT formula again: **CONCAT(@item.value.number, ": ", @item.value.shortDescription)**. Set the *HTML tag* to **H4**.
+
+1. Save and test the page.
+
+    > You could make these requests and tasks clickable or add an open button next to them, but in the interest of time we won't be doing that here.
+
+## Challenge section
+
+You've listed Maintenance requests and tasks in the left column, so try doing the same thing for **Parts** in the right column of the *Related Record Info* container. This one will only have one level as the parts table does not have a child relationship.
 
 # Exercise 4 - Create actions and buttons
 
