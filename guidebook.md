@@ -755,8 +755,8 @@ So far you've added a button directly in UIB, but there is also a use case where
 
 1. In the *UX Form Action Layout Items* related list, click **New**:
 
-    * Name: **Quick Add Layout Item**
-    * Label: **Quick Add Layout Item**
+    * Name: **Quick Add Req**
+    * Label: **Quick Add Req**
     * Table: **Vehicle \[x_snc_flt_mgmt_vehicle\]**
     * Action: **Quick Add Req**
 
@@ -775,16 +775,81 @@ Here are a couple of resoures that should help with understand declarative actio
 
 # Exercise 5 - Miscellaneous
 
-## 
+So far you've modified a landing page and record page, worked with containers, components, properties, events, data resources, client state parameters, actions and buttons, and more! In this exercise you'll touch a few other areas of Workspaces and UIB to add more tools to your toolbox.
 
-## Do something with UX Page Properties to show how they work
+## UX Page Properties
 
-Add an arbitrary one and then call it from multiple pages. Maybe some JSON?
+If you're working with workspaces, you may eventually run into something you'll need to configure through UX Page Properties, although we're trying to keep people in UIB as much as possible. UX Page Properties are basically metadata configurations unique to each instance. This lets the workspace app shell look at the UX Page Properties and show things like tabs and menus rather than having to hardcode it into components. You can find out more about UX Page Properties and which ones come with the workspace app shell in the [Workspace App Shell UX Page Properties](https://www.servicenow.com/community/next-experience-articles/workspace-app-shell-ux-page-properties/ta-p/2331956) COE article.
 
-Create an encoded query and then add that to the home page
+In this exercise you're going to add a custom UX Page Property and then reference it from a UI Builder page. This is espeically useful if you want to define something once and then reuse it across multiple places, not unlike system properties. In this exercise you'll create a UX Page Property that holds an encoded query that you can apply to a list component.
+
+1. Start by switching over to your classic environment tab and going to **All > Now Experience Framework > Experiences**
+
+    ![](images/2023-04-26-16-16-03.png)
+
+1. Find and choose **Fleet Vehicle Management**.
+
+    > You'll see the *UX Page Properties* related list. Notice the chrome_header and chrome_toolbar items which control tabbing and the L1 (left) menu in the workspace. Feel free to click around and see what's happening. Another prop to note is the actionConfigId which holds the sys_id of the Action configuration record we worked with in the last exercise. That tells our experience which action configuration to use vs something like Service Operations Workspace.
+
+2. Click **New** in the *UX Page Properties* related list and fill out the form:
+
+    * Name: **vehicleListQuery**
+    * Type: **String**
+    * Value: **next_oil_changeONThis quarter@javascript:gs.beginningOfThisQuarter()@javascript:gs.endOfThisQuarter()^ORnext_tire_rotationONThis quarter@javascript:gs.beginningOfThisQuarter()@javascript:gs.endOfThisQuarter()**
+
+1. Choose **Submit**.
+
+1. Now you can reference that property from any page in your experience. Open the **Dispatcher home** variant of the *Home* page in UI Builder.
+
+1. Click on the **Simple Vehicle List** component in the content tree. 
+
+1. In the config panel, change the **Edit filter** property to dynamic data binding.
+
+    ![](images/2023-04-26-16-25-50.png)
+
+1. In the *filter* prop enter @context.app.vehicleListQuery
+
+1. **Save** the page. The query should remain unchanged and now you can use that encoded query on any other list component in your experience that references the Vehicle table and only have to change the query once.
 
 ## Record watcher
 
-## User experience analytics
+Now you'll use some record watcher functionality on the home page. The record watcher data resource is very powerful and easy to use, but can also easily affect your instance's performance, so you'll want to be careful using it. Think about how many pages it'll be used on and how large the tables are that you'll be watching.
 
-# Challenge Exercise
+1. On the *Dispatcher home* variant in UIB, open the Data resources panel.
+
+1. Click **+Add** and search for and choose the Record Watcher data resource.
+
+    ![](images/2023-04-26-16-31-44.png)
+
+1. Fill it out as follows:
+
+    * Table: **Maint req**
+    * Edit filter conditions: **State | is | Open**
+
+    > This will cause the data resource to watch for any records that are updated where the state is Open. When that happens the data resource will fire an event. You could do lots of things based on that event like refresh a list or notify the user, and we're going to show an info message.
+
+1. Click into the events tab for the data resource.
+
+1. Click **+Add event handler** and choose **Message received**.
+
+1. Choose the **Add alert nofitications** event handler and click **Edit** in *Items* and add the following:
+
+    * id: **rw**
+    * status: **info**
+    * icon: **circle-info-outline**
+    * content: **There is a new open request**
+    * type: **dismiss**
+
+    ![](images/2023-04-26-16-45-10.png)
+
+1. Click **Apply** and you can see the JSON that was generated based on the values you filled out. 
+
+1. Click **Add** and **Save** the page.
+
+1. To test, open the page in the runtime. Click into a vehicle from the vehicles list on the right hand side of the page. Use the Quick Add Req button to create a new request. Now switch back to the home tab and you should see the blue info message at the top.
+
+## Add another menu item?
+
+# Appendix
+
+Instructions on update sets and git
