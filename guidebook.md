@@ -37,7 +37,7 @@ If you're doing this lab during CreatorCon, you'll be working on an instance on 
 
     ![](images/2023-04-14-09-43-02.png)
 
-    Notice that the lists that come up on the left could be organized better, which we'll do.
+    > Notice that the lists that come up on the left could be organized better, which we'll do.
 
 1. Click into one of the requests.
 
@@ -509,7 +509,7 @@ Now you'll add an overview tab to this page showing an over view of the record s
 
 3. Now you're going to add a custom GraphQL data resource to return data about the related records so you can give a real overview of the history of the vehicle on the overview tab. Open the **Data** panel. 
 
-4. Click **+Add**, search **get vehicle**, choose **Get Vehicle Info GQL**, and click **Add**.
+4. Click **+Add**, search for and choose **Get Related Vehicle Info GQL**, and click **Add**.
 
     ![](images/2023-04-21-14-19-18.png)
 
@@ -668,7 +668,7 @@ Now you'll add some buttons to the record page that will open a modal to allow y
 
     ![](images/2023-04-26-10-35-56.png)
 
-2. Now add another event handler, choose **Refresh** under *Get Vehicle Info GQL 1*, and click **Add**. This will refresh the data resource which will also refresh any components using data from teh data resource. 
+2. Now add another event handler, choose **Refresh** under *Get Related Vehicle Info GQL 1*, and click **Add**. This will refresh the data resource which will also refresh any components using data from teh data resource. 
 
 3. **Save** the page and open it in the runtime to test. 
 
@@ -836,7 +836,7 @@ Now you'll use some record watcher functionality on the home page. The record wa
 
     * id: **rw**
     * status: **info**
-    * icon: **circle-info-outline**
+    * icon: **circle-info-outline**-
     * content: **There is a new open request**
     * type: **dismiss**
 
