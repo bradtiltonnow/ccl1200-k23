@@ -177,25 +177,37 @@ In this exercise you'll make a variant of the home page for a dispatcher persona
 
 A page variant in UI Builder is a variation of a page that exists at the same path that targets different audiences. Every page has a default variant.
 
-1. Open UI Builder and go to the experience view for your FLeet Management Experience. If you're already in UIB, click Fleet Vechile Management next to the UIB logo at the left of the builder window.
+1. In UI Builder, go to the experience view for your Fleet Management Experience. If you're already in UIB, click Fleet Vehicle Management next to the UIB logo at the left of the builder window.
+
+    ![](images/2023-05-01-08-06-18.png)
 
 2. Click on the plus sign next to Pages and variants.
 
-1. Choose **Add variant to page**.
+    ![](images/2023-05-01-08-06-59.png)
 
-1. Choose **+Add variant** under *Home default*.
+3. Choose **Add variant to page**.
 
-1. Choose **--> Create from scratch instead**.
+4. Choose **+Add variant** under *Home default*.
 
-2. Name it **Dispatcher home**.
+    ![](images/2023-05-01-08-07-56.png)
 
-3. Under *Audience* Click **+Add** anmd choose **Audience for appFleet Vehicle Management** and click **Create**.
+5. Choose **--> Create from scratch instead**.
 
-4. Notice that the order of this variant is 0 so it will show up first. Click the **Editor** link for the *Dispatcher home* variant to open it in UIB.
+    ![](images/2023-05-01-08-08-31.png)
+
+6. Name it **Dispatcher home**.
+
+7. Under *Audience* Click **+Add** anmd choose **Audience for appFleet Vehicle Management** and click **Create**.
+
+    ![](images/2023-05-01-08-09-34.png)
+
+    > Notice that the order of this variant is 0 so it will show up first. 
+
+8. Click the **Editor** link for the *Dispatcher home* variant to open it in UIB.
+
+    ![](images/2023-05-01-08-12-39.png)
 
 ## Add components to the page
-
-1. Click back into the **Editor**.
 
 1. Click **+Add component** under *Body (flex)* in the content tree to bring up the component toolbox.
 
@@ -205,128 +217,178 @@ A page variant in UI Builder is a variation of a page that exists at the same pa
 
     ![](images/2023-04-18-09-03-06.png)
 
-1. Now you'll rename this container. I don't always rename components, but renaming containers is generally a good idea, especially when there will be a lot on the page. Click the **(i)** icon next to the name of the container on the right side of your builder window.
+3. Now you'll rename this container. I don't always rename components, but renaming containers is generally a good idea, especially when there will be more than a few on the page. On the right side of the builder window, in the configuration panel, click the **(i)** icon next to the name of the container.
 
     ![](images/2023-04-18-09-05-39.png)
 
-1. Give it a label of **Row 1** and an ID of **row_1** and click **Apply**.
+4. Give it a label of **Row 1** and an ID of **row_1** and click **Apply**.
 
     ![](images/2023-04-18-09-07-35.png)
 
-1. Right-click on Row 1 (Flex) in the content tree and choose **Duplicate** or CMD/CTRL+D to duplcate the container.
+5. Right-click on Row 1 (Flex) in the content tree and choose **Duplicate** or CMD/CTRL+D to duplcate the container.
 
     ![](images/2023-04-18-09-09-48.png)
 
-1. Rename it **Row 2** and **row_2**.
+6. Rename the new container **Row 2** and **row_2**.
 
-1. Now add a **Row 3** the same way and **Save** your page (CMD/CTRL+S works for this). THe content tree should look like this.
+7. Now add a **Row 3** after *Row 2* the same way and **Save** your page (CMD/CTRL+S works for this). The content tree should look like this.
 
     ![](images/2023-04-18-09-12-31.png)
 
-1. Now add a **Stylized text** component in *Row 1*.
+8. Now add a **Stylized text** component in *Row 1*.
 
     ![](images/2023-04-18-09-14-37.png)
 
-1. In the config panel on the right, choose **None Configure the component manually.**
+9. In the config panel on the right, choose **None Configure the component manually.**
 
-1. In the *Text* property, enter: **Dispatcher Landing**
+    ![](images/2023-05-01-08-18-30.png)
 
-1. Now click on **Row 3 (flex)**.
+    > Afer selecting the None option you'll see this component's three properties. Each component has a set of properties, which are the component inputs you can configure in UI Builder.
 
-1. In the styles panel choose **Grid** for the *Type* and fill out:
+10. In the *Text* property, enter: **Dispatcher Landing**. You'll leave the HTML tag and CSS properties as is.
+
+<!-- This looked bad so we're doing one on top of the other
+
+11. Now click on **Row 3 (flex)** in the content tree.
+
+12. In the styles panel choose **Grid** for the *Type* and fill out:
 
     * Gap: **Lg (1rem)**
     * Columns: **2**
     * Rows: **1**
 
-1. Now add a **List - Simple** component to the Row 3 container. 
+-->
+
+1.  Now add a **List** component to the Row 3 container. 
+
+    ![](images/2023-05-01-08-41-20.png)
    
-2. Rename the simple list component:
+2.  Rename the list component:
 
-    * Label: Simple Request List
-    * ID: simple_request_list
+    * Label: Request List
+    * ID: request_list
 
-3. In the config panel, configure as follows:
+    ![](images/2023-05-01-08-42-39.png)
+
+3.  In the config panel, configure as follows:
 
     * Table: **Maint req**
-    * Columns: **number | vehicle | mielage | state | short_description**
+    * Columns: (use the **+Add** button on this property to add each field one at a time) **number | vehicle | mileage | state | short_description**
     * Edit filter: **State | is one of | Pending, Open, Work in Progress**
-    * Maximum rows: **20**
     * Title: **Active Maintenance Requests**
+    * Hide list actions: **true**
+    * Pagination \> Maximum rows: **10**
 
-4. Click the **Events** tab, choose **+ Add event mapping**, and choose **Reference link clicked**.
+4.  Click the **Events** tab of the configuration panel on the right, choose **+ Add event mapping**, and choose **Reference link clicked**.
 
-    ![](images/2023-04-18-13-19-07.png)
+    ![](images/2023-05-01-08-47-01.png)
 
-5. In the modal that comes up choose **Link to destination** under *Inherited event handlers*.
+5.  In the modal that comes up choose **Link to destination** under *Inherited event handlers* and choose the **Select destination** button.
 
-1. Choose the **Select destination** button, expand the *Pages* dropdown, and choose **Record**.
+    ![](images/2023-05-01-08-48-18.png)
 
-1. Now you'll need to pass in dynamic data to the event handlers properties. Mouse over the *table* property and click the **Bind data** icon.
+6.  Expand the *Pages* dropdown, and choose **Record**.
+
+7.  Now you'll need to pass in dynamic data to the event handlers properties. Mouse over the *table* property and click the **Bind data** icon.
 
     ![](images/2023-04-18-13-24-46.png)
 
-1. Set the value to **@payload.table**
+8.  Set the value to **@payload.table**
 
-1. Do the same with the sysId property and set the value to **@payload.sys_id**.
+9.  Do the same with the sysId property and set the value to **@payload.sys_id**.
 
-1. Click **Add** to add the event handler to the event.
+10. Choose **OK**.
 
-1. Save the page and open the preview. Both the requests and vehicle links should open the appropriate records.
+    ![](images/2023-05-01-08-33-27.png)
 
-1. Now right-click on the **Simple Request List** component in the content tree and choose **Duplicate**.
+11. Click **Add** to add the event handler to the event.
 
-1. Rename the component **Simple Vehicle List** and **simple_vehicle_list**.
+12. **Save** the page and use the **Open** button to preview the page in a new tab. Both the requests and vehicle links should open the appropriate records.
 
-1. Configure the component as follows:
+    ![](images/2023-05-01-08-50-06.png)
+
+    > The links should open those records in a new workspace tab. Also notice the pagination and filtering that come along with this highly configurable component.
+
+1. Go back to the UI Builder tab.
+
+13. Now right-click on the **Request List** component in the content tree and choose **Duplicate**.
+
+14. Rename the component **Vehicle List** and **vehicle_list**.
+
+15. Configure the component as follows:
 
     * Table: **Vehicle**
     * Columns: **number | vehicle_name | mileage | next_oil_change | next_tire_rotation**
     * Edit filter: **Next oil change | on | This quarter OR Next tire rotation | on | This quarter**
     * Title: **Vehicles this quarter**
+    * Pagination \> Maximum rows: **20**
+
+1. **Save** and test the page. 
+
+    > Do the links work? They should work similarly to the previous list because the event handlers copied over when you duplicated the list. Because we kept them dynamic they'll also work with the new list.
 
 ## Add vehicle search box
 
 Now you're going to add a vehicle search to the homepage so the dispatcher can easily search vehicles by name or license plate.
 
-1. Inside the empty *Row 2* container, add another Container component and call it **Search container**
+1. In your UI Builder tab, inside the empty *Row 2* container, add another **Container** component and rename it **Search container**.
 
-2. Add another container by right-clicking on the Search container and choosing **Add component after**. Call it **Vehicle container**.
+    > You'll notice we're doing a lot of renaming. The main reason for this is to make life easier on yourself when you or someone else comes back to this page in 6 months and needs to change something in a complex content tree. Renaming makes it easier to target specific components and to know thheir purpose.
 
-1. Open the client state parameter panel by clicking the **Client state** icon in the bottom left corner of the builder window.
+2. Add another container by right-clicking on the Search container and choosing **Add component after**. Call it **Vehicle container**. Your Row 2 container should look like this in the content tree at this point:
 
-    > Client state parameters are how you can manage the page's state. You can think of these as the page's scratchpad where you can store values to be used elsewhere on the page.
+    ![](images/2023-05-01-09-14-32.png)
 
-1. Use the **+Add** button to add a new client state parameter:
+3. Open the client state parameter panel by clicking the **Client state** icon in the bottom left corner of the builder window.
+
+    ![](images/2023-05-01-09-15-15.png)
+
+    > Client state parameters are a mechanism you can use to manage the page's state. You can think of these as the page's scratchpad where you can store values to be used elsewhere on the page.
+
+4. Use the **+Add** button to add a new client state parameter:
 
     * Name: searchTerm
     * Type: String
     * Initial value: <empty>
 
-2. Now you'll add a search component and set the client state parm value when someone searches. Inside the *Search container* add a **Search input** component and set its Placeholder property to **Search vehicles**.
+    ![](images/2023-05-01-09-16-31.png)
 
-3. Click into the *Events* tab, choose **+Add event mapping**, and then choose **Search executed**.
+5. Now you'll add a search component and set the client state parm value when someone searches. Inside the *Search container* add a **Search input** component and set its Placeholder property to **Search vehicles**.
 
-4. On the left, under *Page-level event handlers* choose **Update client state parameter** and fill out the form:
+    ![](images/2023-05-01-09-17-19.png)
+
+6. Click into the *Events* tab, choose **+Add event mapping**, and then choose **Search executed**.
+
+    ![](images/2023-05-01-09-18-38.png)
+
+7. On the left, under *Page-level event handlers* choose **Update client state parameter** and fill out the form:
 
     * Client State Parameter Name: searchTerm
     * New Value: (change to dynamic data binding) @payload.searchTerm
 
-1. Click **Apply**.
+    ![](images/2023-05-01-09-20-11.png)
 
-1. You're going to display search results inside the Vechile container, but first you're going to show/hide that container based on whether the searchTerm parameter is empty or not. Click on the **Vehicle container (flex)** in the content tree.
+8. Click **Apply**.
 
-1. In the config panel for the container on the right, there is a very small eye icon at the top right of the panel that toggles the component visibility properties. Click it.
+9.  You're going to display search results inside the Vechile container, but first you're going to show/hide that container based on whether the searchTerm parameter is empty or not. Click on the **Vehicle container (flex)** in the content tree.
+
+10. In the config panel for the container on the right, there is a very small eye icon at the top right of the panel that toggles the component visibility properties. Click it.
 
     ![](images/2023-04-20-10-30-26.png)
 
-1. Mouse over the *Hide component* property and switch to dynamic data binding.
+11. Mouse over the *Hide component* property and switch to dynamic data binding.
 
-    ![](images2023-04-20-10-32-08.png)
+    ![](images/2023-05-01-09-21-40.png)
 
-1. Now, you'll use a formula in that property. Enter **EMPTY(@state.searchTerm)**. This formular returns true/false based on whether the *searchTerm* client state parameter is empty or not.
+12. Now, you'll use a formula in that property. Enter **EMPTY(@state.searchTerm)**. 
 
-1. **Save** the page and open it in the runtime. Type something into the search box and hit enter. You should see the container show up with the no contents displayed error message once you execute a search.
+    ![](images/2023-05-01-09-22-53.png)
+
+    > This formula returns true/false based on whether the *searchTerm* client state parameter is empty or not.
+
+13. **Save** the page and open the preview/runtime. 
+
+14. Type something into the search box and hit enter. You should see the container show up with the no contents displayed error message once you execute a search.
 
 ## Add vehicle search results
 
@@ -336,64 +398,89 @@ Now you'll configure the search results. You're going to use a data resource and
 
     ![](images/2023-04-21-08-49-30.png)
 
+    > For more information on data resources, you can check out my [All About Data Resources in UI Builder](https://www.servicenow.com/community/next-experience-articles/all-about-data-resources-in-ui-builder/ta-p/2360643) article. Data resources allow you to query and mutate data from the server so your components don't have to worry about data handling.
+
 1. In the Data panel that comes up, choose **+Add**, search for **look up records**, choose the **Look up records** data resource and click **Add**.
 
-    ![](images/2023-04-21-08-50-31.png)
+    ![](images/2023-05-01-09-28-23.png)
 
-1. Fill out the data resource as follows:
+2. Fill out the data resource as follows:
+
+    > Note that it's going to tell you something is wrong. This is because the data resource hasn't been configured yet. You haven't done anything wrong!
 
     * Use the (i) to change the label to **Look Up Vehicles** and the ID to **look_up_vehicles**.
-    * When to evaluate this data resource: Only when invoked (explicit)
-    * Table: Vehicle
+    * When to evaluate this data resource: **Only when invoked (explicit)**
+    * Table: **Vehicle**
     * Edit conditions: **Vehicle name | contains | <ddb> @state.searchTerm** OR **License plate | contains | <ddb> @state.searchTerm**
     * Return fields: **Vehicle name | license_plate**
-    * Order by: Vehicle name
-    * Max results: 10
+    * Order by: **Vehicle name**
+    * Max results: **10**
 
-1. Since you selected that the data resource is only evaluted when invoked, you'll need to trigger a refresh when someone searches. Click into the **Search input 1** component, click on its events tab, and add another event handler to the *Search executed* event.
+    ![](images/2023-05-01-09-31-04.png)
 
-1. Under *Look up vehicles* choose **Refresh** and click **Add**.
+3. Since you selected that the data resource is only evaluted when invoked, you'll need to trigger a refresh when someone searches. Click into the **Search input 1** component, click on its events tab, and add another event handler to the *Search executed* event.
 
-2. Now add a new container component within the Vehicle container and set it to:
+4. Under *Look up vehicles* choose **Refresh** and click **Add**.
 
-    * Component label: (click the i icon) List header container
-    * Type: Grid
-    * Columns: 3
-    * Rows: 1
-    * Padding: Lg (1rem)
+    ![](images/2023-05-01-09-32-58.png)
 
-3. Add a stylized text component within the container component and fill it out:
+1. Now so you can see what's happening in the preview panel, click into the **Vehicle Container** and set the *Test value* property to **false**. This allows you to keep the formula that hides the component, but allows you to see what you're ocnfiguring.
 
-    * Text: Vehicle name
-    * HTML tag: H2
+5. Now add a new container component within the *Vehicle container* and set it to:
 
-4. Duplicate the stylized text component you just added and set the text to **License plate**.
+    * Component label: (click the i icon) **List header container**
+    * Type: **Grid**
+    * Columns: **3**
+    * Rows: **1**
+    * Padding: **Lg (1rem)**
 
-5. Right-click **List header container (Grid)**, choose add component after, and add a **Repeater** component.
+    ![](images/2023-05-01-09-35-28.png)
 
-6. In the Repeater's config panel, change the *Data array* property to dynamic data binding and enter: @data.look_up_vehicles.results. You should see a little green 10 next to the repeater component in the content tree since you're returning 10 results from the data resource.
+6. Add a stylized text component within the container component and fill it out:
 
-7. Add another **Container** inside the repeater calling it **List container** and styling it the same as the *List header container* from the last step.
+    * Presets: **None**
+    * Text: **Vehicle name**
+    * HTML tag: **H2**
 
-8. Within that container add a stylized text component with the following values:
+7. Duplicate the stylized text component you just added and set the text to **License plate**.
 
+8. Right-click **List header container (Grid)**, choose add component after, and add a **Repeater** component.
+
+    ![](images/2023-05-01-09-39-49.png)
+
+9.  In the Repeater's config panel, change the *Data array* property to dynamic data binding and enter: **@data.look_up_vehicles.results**. You should see a little green 10 next to the repeater component in the content tree since you're returning 10 results from the data resource.
+
+    ![](images/2023-05-01-09-41-59.png)
+
+10. Add another **Container** inside the repeater calling it **List container** and styling it the same as the *List header container* from the last step.
+
+    * Type: **Grid**
+    * Columns: **3**
+    * Rows: **1**
+    * Padding: **Lg (1rem)**
+
+11. Within that container add a stylized text component with the following values:
+
+    * Presets: **None**
     * Text: **@item.value.vehicle_name.value**
     * HTML tag: **H4**
 
-9.  Duplicate that stylized text component to another and give it text of: **@item.value.license_plate.value**
+    > @item.value targes the item in the array from the repeater. Note that the repeater is only showing you the first result in the preview panel, even though you can see there are 10 results on the left. This is both for performance reasons and to reduce clutter on the page.
 
-10. Add a **Buton** component after the stylized text component with the following values:
+12. Duplicate that stylized text component to another and give it text of: **@item.value.license_plate.value**
+
+13. Add a **Button** component after the stylized text component with the following values:
 
     * Label: **Create New Maint Request**
     * <click into styles tab> Padding: **Lg (1rem)**
 
-11. In the *Events* tab add a new event handler to the *Button clicked* event.
+14. In the *Events* tab add a new event handler to the *Button clicked* event.
 
-12. Choose **Link to destination** and change the *Mode* from *Form* to **Script**.
+15. Choose **Link to destination** and change the *Mode* from *Form* to **Script**.
 
-    ![](images/2023-04-21-09-47-01.png)
+    ![](images/2023-05-01-09-48-02.png)
 
-13. You'll paste the following script from [Exercise2.txt](files/Exercise2.txt):
+16. You'll paste the following script from [Exercise2.txt](files/Exercise2.txt):
 
     ```javascript
     /**
@@ -421,17 +508,13 @@ Now you'll configure the search results. You're going to use a data resource and
     }
     ```
 
-    > You're using a script for this in order to build the query param. You can pass a query to the record page to prepopulate values, similar to the classic environment.
+    > You're using a script for this in order to build the query param. You can pass a query to the record page to prepopulate values, similar to the classic environment. In this script you're linking to the record page with a sys_id of -1, which means you're populating a new record.
 
-14. Click **Apply** and **Save** the page.
+17. Click **Apply** and **Save** the page.
 
-15. Open the page in the runtime and test it. Search for a Ford Mustang and click the **Create New Maint Request** button. It should open the request in a new tab while prepopulating the vehicle record in the request.
+18. Open the page in the runtime and test it. Search for a Ford Mustang and click the **Create New Maint Request** button. It should open the request in a new tab while prepopulating the vehicle record in the request.
 
 This isn't the prettiest page in the world, and maybe even isn't all that practical, but hopefully it gives you an idea of some of what you can accomplish on a landing page like this. 
-
-## Do some styling?
-
-<!-- Have to wait until Patch 2 is avails -->
 
 # Exercise 3 - Enhance the Record Page for Vehicles
 
