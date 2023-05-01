@@ -715,8 +715,8 @@ You've listed Maintenance requests and tasks in the left column, so try doing th
 
 You'll want to use the following data bindings:
 
-    * Repeater: **@data.get_related_vehicle_info_gql_1.output.data.xSncFltMgmt.fleet.vehicle.parts**
-    * Stylized text: **CONCAT(@item.value.serialNumber, ": ", @item.value.partName)**
+* Repeater: **@data.get_related_vehicle_info_gql_1.output.data.xSncFltMgmt.fleet.vehicle.parts**
+* Stylized text: **CONCAT(@item.value.serialNumber, ": ", @item.value.partName)**
 
 ![](images/2023-05-01-11-05-43.png)
 
@@ -724,7 +724,7 @@ You'll want to use the following data bindings:
 
 ## Conclusion
 
-This is obviously not a very nice looking page, but with some styling the overview tab could be a really attractive starting page.
+With some styling this overview tab could be a really attractive starting page that gives the user a full picture of what is happening with the vehicle in question.
 
 # Exercise 4 - Create actions and buttons
 
@@ -732,106 +732,160 @@ Now you'll add some buttons to the record page that will open a modal to allow y
 
 ## Create the Quick Add Modal
 
+1. Swith back to your UI Builder browser tab.
+
 1. At the very top of the content tree, expand the **Modals** option and click the **+** icon to the right.
 
     ![](images/2023-04-25-13-02-05.png)
 
 1. Choose **Custom**.
 
-1. Click the new **Custom 1** modal in the content tree and change its name to **Quick add req (quick_add_req)**.
+1. The new **Custom 1** modal in the content tree should be selected. Now change its name to **Quick add req (quick_add_req)**.
 
-1. Add a new stylized text component in the Header 1 container of the modal.
+    ![](images/2023-05-01-12-57-03.png)
+
+2. Add a new stylized text component in the Header 1 container of the modal.
 
     ![](images/2023-04-25-13-04-53.png)
 
-2. Remove the preset, set the text to **Quick Add Maint Request**, and set the HTML tag to **H2**.
+3. Remove the preset, set the text to **Quick Add Maint Request**, and set the HTML tag to **H2**.
 
-1. Add an **Input** component to the *Body 1* section and set the *Label* property to **Short description**.
+4. Add an **Input** component to the *Body 1* section.
 
-1. Create a new Client state parameter by clicking the state icon toward the bottom left hand side of the builder window and clicking add.
+    ![](2023-05-01-12-58-35.png)
 
-1. Name it **reqShortDescription** and leave it as a string.
+1. Set the *Input 1* component's *Label* property to **Short description**.
 
-1. Minimize the Client state panel.
+5. Create a new Client state parameter by clicking the state icon toward the bottom left hand side of the builder window and clicking add.
 
-1. Back in the input component click into the events tab. 
+6. Name it **reqShortDescription** and leave it as a string.
+   
+   ![](images/2023-05-01-13-00-07.png)
 
-1. Add a new event mapping to the input value set event.
+7. Minimize the Client state panel.
 
-1. Choose **Update client state parameter** and choose the *Client State Parameter Name* **reqShortDescription**.
+8. Back in the *Input 1* component click into the **Events** tab. 
 
-2. Set the *New Value* to **@payload.value** and click **Add**. This will set the CSP to the value of the input field on blur (mouse or lcick out of the field).
+9.  Add a new event mapping to the input value set event.
 
-1. Now you'll add another data resource to the page. Open the Data panel at the bottom left side of the builder window.
+    ![](images/2023-05-01-13-01-15.png)
 
-1. Click **+Add** and add the **Create Record** data resource to the page. You won't configure this data resource until you need to call it.
+10. Choose **Update client state parameter** and choose the *Client State Parameter Name* **reqShortDescription**.
 
-1. Minimize the data panel and add a **Button** component to the *Footer 1* container in the modal and label it **Create Request**.
+11. Set the *New Value* to **@payload.value** and click **Add**. This will set the CSP to the value of the input field on blur (mouse or lcick out of the field).
 
-1. In the events tab, add an event handler to the *Button clicked* event.
+    ![](images/2023-05-01-13-02-42.png)
 
-1. Scroll all the way to the bottom of the event handlers and choose **Create Record > Execute**.
+12. Now you'll add another data resource to the page. Open the **Data** panel at the bottom left side of the builder window.
 
-1. Set the table to **Maint req**.
+13. Click **+Add** and add the **Create Record** data resource to the page. You won't configure this data resource until you need to call it.
 
-1. Click edit field values and set the following:
+    ![](images/2023-05-01-13-04-13.png)
+
+14. Minimize the data panel.
+
+15. Add a **Button** component to the *Footer 1* container in the modal and label it **Create Request**.
+
+16. In the events tab, add an event handler to the *Button clicked* event.
+
+17. Scroll all the way to the bottom of the event handlers and choose **Create Record > Execute**.
+
+18. Set the table to **Maint req**.
+
+    ![](images/2023-05-01-13-06-34.png)
+
+19. Click edit field values and set the following:
 
     * **Vehicle | is | @context.props.sysId** *and*
     * **Short description | is | @state.reqShortDescription**
 
-1. Click **Apply** and then **Add**.
+    ![](images/2023-05-01-13-07-39.png)
 
-1. Now you'll disable the button unless the user has typed into the short description input. Click into the config tab of the button, switch the *Disabled* property to dynamic data binding and use the formula: **EMPTY(@state.reqShortDescription)**
+20. Click **Apply** and then **Add**.
 
-1. **Save** the page.
+21. Now you'll disable the button unless the user has typed into the short description input. Click into the **Config** tab of the button, switch the *Disabled* property to dynamic data binding and use the formula: **EMPTY(@state.reqShortDescription)**
 
-1. Click the Body container in the content tree and then clic kthe Events tab on the right side of the page.
+    ![](images/2023-05-01-13-08-48.png)
 
-1. You're going to add a handled event that will pop the modal. This allows you to trigger that event from multiple places. At the bottom of the Events tab, click **+Add** under *Handled events*.
+    > You're telling the button to be disbaled if the reqShortDescription state parameter is empty.
 
-1. Set the Event label to **Quick Add Modal** and choose **Add**.
+22. **Save** the page.
 
-1. At the top of the Events panel, choose **+Add event mapping**, and then choose **Quick Add Modal**.
+23. Click the **Body** container in the content tree to open the *Page configuration* panel where you'd normally configure and style containes and components.
+    
+24. Click the **Events** tab in the *Page configuration* panel.
+
+25. You're going to add a handled event that will pop the modal. This allows you to trigger that event from multiple places. At the bottom of the Events tab, click **+Add** under *Handled events*.
+
+    ![](images/2023-05-01-13-10-48.png)
+
+26. Set the Event label to **Quick Add Modal** and choose **Add**.
+
+    ![](images/2023-05-01-13-12-54.png)
+
+27. At the top of the Events panel, choose **+Add event mapping**, and then choose **Quick Add Modal**.
 
     ![](images/2023-04-26-10-13-20.png)
 
-3. Choose **Open or close modal dialog** under inherited event handlers, toggle *Open modal dialog* to **True**, choose **Quick add req**, and click **Add**.
+28. Choose **Open or close modal dialog** under inherited event handlers, toggle *Open modal dialog* to **True**, choose **Quick add req**, and click **Add**.
 
-    ![](images/2023-04-26-10-15-19.png)
+    ![](images/2023-05-01-13-14-12.png)
 
     > Now any time that handled event is triggered it will open the modal.
 
-2. In the content tree, add a **Button** component after the stylized text component within the *Maint requests (Flex)* container.
+## Trigger the Modal from the Overview tab
+
+29. In the content tree, add a **Button** component after the stylized text component within the *Maint requests (Flex)* container.
 
     ![](images/2023-04-26-10-08-54.png)
 
-1. Label it **Quick Add Request**.
+30. Label it **Quick Add Request**.
 
-1. In the events tab, add a new button clicked event handler. Under *Page-level event handlers* your new Quick Add Modal event should show up. Choose that and click **Add**.
+31. In the button's *Events* tab, add a new **Button clicked** event handler. Under *Page-level event handlers* your new Quick Add Modal event should show up. Choose that and click **Add**.
 
-1. **Save** the page and test it in the runtime.
+    ![](images/2023-05-01-13-21-05.png)
 
-1. Click the **Quick Add Request** button, add something to the short description, tab out, and click **Create Request**. WHen you refresh the page you should see your new request in there. This is nice, but you should probably close the modal and auto-refresh the page, so lets do that.
+32. **Save** the page and test it in the runtime.
 
-1. Back in UIB, expand the modal section under the content tree, then click into the **Button 1** component in the *Footer 1* container.
+33. Click the **Quick Add Request** button, add something to the short description, tab out, and click **Create Request**. When you refresh the page you should see your new request in there. This is nice, but you should probably close the modal and auto-refresh the page, so let's do that.
 
-1. In the component's Events tab, choose **+Add event handler**, choose **Open or close modal dialog**, select the **Quick add req** modal, and choose **Add**.
+34. Back in UIB, open the Data panel.
 
-    ![](images/2023-04-26-10-35-56.png)
+1. Click into the **Create Record 1** data resource.
 
-2. Now add another event handler, choose **Refresh** under *Get Related Vehicle Info GQL 1*, and click **Add**. This will refresh the data resource which will also refresh any components using data from teh data resource. 
+1. Click into its **Events** tab.
 
-3. **Save** the page and open it in the runtime to test. 
+1. Add an event mapping to the *Operation Succeeded* event.
+
+    ![](images/2023-05-01-13-36-14.png)
+    
+2.  Choose **Open or close modal dialog**, select the **Quick add req** modal, scroll down in that panel, and choose **Add**.
+
+    ![](images/2023-05-01-13-37-29.png)
+
+3.  Now add another event handler to to the *Operation Succeeded* event. Choose **Refresh** under *Get Related Vehicle Info GQL 1*, and click **Add**. You may have to scroll down after selecting refresh to see the Add button.
+
+    ![](images/2023-05-01-13-38-47.png)
+   
+   > This will refresh the data resource which will also refresh any components using data from the data resource. 
+
+4.  **Save** the page and open it in the runtime to test. THe modal should close automatically and you should see the new request show up without having to refresh the page.
 
 ## Add a Quick Add Req declarative action button
 
-So far you've added a button directly in UIB, but there is also a use case where you may want a button to show up in the action bar on a form or list. In this section you'll add a button to the form's action bar that also triggers the modal so you can quick add a task from anywhere on the record page.
+So far you've added a button directly in UIB, but there is also a use case where you may want a button to show up in the action bar on a form or list. 
+
+![](images/2023-05-01-13-40-40.png)
+
+In this section you'll add a button to the form's action bar that also triggers the modal so you can quick add a task from anywhere on the record page.
 
 1. With record page still open, click the **Action bar** component near the top of the content tree.
 
     ![](images/2023-04-25-10-52-55.png)
 
-2. At the bottom of the config panel, choose **Manage declarative action configuration** to open the configuration in a new browser tab
+2. At the bottom of the config panel, choose **Manage declarative action configuration** to open the configuration in a new browser tab.
+
+    ![](images/2023-05-01-13-42-16.png)
    
 3. There won't be anything in the list, but we have to do a little hack to fill out the form. At the top left of the list, click the funnel icon to open the condition builder.
    
@@ -843,19 +897,19 @@ So far you've added a button directly in UIB, but there is also a use case where
 
     > This will autopopulate action model = form when you create the new record. Action model is a required field but hidden for some reason in the current release.
 
-1. Click **New** at the top right.
+1. Click the blue **New** button at the top right of your browser window.
 
 2. You'll see a blank Action Assignment form. Choose *Implemented as*: **UXF Client Action**.
 
 3. Click the magnifying glass in the *Specify client action* field to create a new *Action Payload Definition* to start.
 
-4. Click **New** and fill out the following:
+4. Click **New** at the top right and fill out the following:
 
     * Key: **QUICK_ADD_REQ**
     * Label: **Quick Add Request**
     * Applicable To: **Form**
 
-5. Choose **Submit**.
+5. Choose **Submit**. This will create the new action payload definition and populate it in to the original form you're filling out.
 
 6. Fill out the rest of the Action Assignment form as follows:
 
@@ -864,13 +918,21 @@ So far you've added a button directly in UIB, but there is also a use case where
 
 1. Right-click on the form header and choose **Save**.
 
+    ![](images/2023-05-01-13-47-51.png)
+
 1. Click into the **Action Configurations** related list and click **Edit**.
+
+    ![](images/2023-05-01-13-48-33.png)
 
 1. Move the **Fleet Mgmt Action Config** from the left to the right of the slushbucket and **Save**.
 
     ![](images/2023-04-26-11-52-11.png)
 
-2. Click in to the **UX Add-on Event Mappings** related list and click **New** and fill out the form:
+2. Click in to the **UX Add-on Event Mappings** related list and click **New**.
+
+    ![](images/2023-05-01-13-49-47.png)
+
+1. Fill out the form:
 
     * Event Mapping Name: **Quick Add Request**
     * Source element ID: **ui_action_bar**
@@ -881,39 +943,49 @@ So far you've added a button directly in UIB, but there is also a use case where
 
 3. Click **Submit**
 
-4. Now you'll need to create a form action record, form action layout, and form action layout item. Go to the **All** menu at the top and choose **UX Form Actions**.
+4. Now you'll need to create a form action record, form action layout, and form action layout item. Close this browser tab and go back to the *Classic environment* tab that has the blue header menu with All, Favorites, etc.
+
+    ![](images/2023-05-01-13-52-01.png)
+
+5. Go to the **All** menu at the top and choose **UX Form Actions**.
 
     ![](images/2023-04-26-11-54-26.png)
 
-5. Click **New** and fill out the form: 
+6. Click **New** and fill out the form: 
 
     * Name: **Quick Add Req**
     * Action Type: **Declarative Action**
     * Table: **Vehicle \[x_snc_flt_mgmt_vehicle\]** (Do this before filling out the next field)
     * Declarative Action: **flt_mgmt_quick_add_req**
 
-6. Choose **Submit**.
+7. Choose **Submit**.
 
-1. From the **All** menu, go to **UX Form Action Layouts** and create a new layout:
+8. From the **All** menu, go to **UX Form Action Layouts**. 
+   
+9.  In the list that comes up, click the **New** button and fill out the form:
 
     * Name: **Vehicle Form Action Layout**
     * Table: **Vehicle**
     * Action Config: **Fleet Mgmt Action Config**
 
-    > You'll need a UX Form Action Layout record for every table where you want to add actions. If you wanted to add more actions to the vehicle table you would not need to recreate this record.
+    > You'll need a UX Form Action Layout record for every *table* where you want to add actions. If you wanted to add more actions to the vehicle table you would not need to recreate this record.
 
-1. Right-click on the header and **Save** the record.
+10. Right-click on the header and **Save** the record becuase you'll need to edit the record's related lists.
 
-1. In the *UX Form Action Layout Items* related list, click **New**:
+    ![](images/2023-05-01-13-59-17.png)
+
+11. In the *UX Form Action Layout Items* related list, click **New**:
 
     * Name: **Quick Add Req**
     * Label: **Quick Add Req**
     * Table: **Vehicle \[x_snc_flt_mgmt_vehicle\]**
     * Action: **Quick Add Req**
 
-1. **Submit** the form.
+12. **Submit** the form.
 
-1. Open or refresh the vehicle record page in the runtime and you should now see your declarative action in the actions bar. Clicking it should pop the modal open.
+13. Open or refresh the vehicle record page in the runtime and you should now see your declarative action in the actions bar. Clicking it should pop the modal open.
+
+    ![](images/2023-05-01-14-03-33.png)
 
 ## Resources and Conclusion
 
