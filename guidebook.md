@@ -510,9 +510,11 @@ Now you'll configure the search results. You're going to use a data resource and
 
     > You're using a script for this in order to build the query param. You can pass a query to the record page to prepopulate values, similar to the classic environment. In this script you're linking to the record page with a sys_id of -1, which means you're populating a new record.
 
-17. Click **Apply** and **Save** the page.
+18. Click **Apply**. 
 
-18. Open the page in the runtime and test it. Search for a Ford Mustang and click the **Create New Maint Request** button. It should open the request in a new tab while prepopulating the vehicle record in the request.
+17. Click back into **Vehicle Container (Flex)** and set the *Test value* back to **None**.
+
+19. **Save** the page and open it in the runtime to test. Search for a Ford Mustang and click the **Create New Maint Request** button. It should open the request in a new tab while prepopulating the vehicle record in the request.
 
 This isn't the prettiest page in the world, and maybe even isn't all that practical, but hopefully it gives you an idea of some of what you can accomplish on a landing page like this. 
 
@@ -532,11 +534,30 @@ The next requirement is to customize the vehicle record page and give it an over
 
 3. Name it **Vehicle Record**, set the conditions to **table=x_snc_flt_mgmt_vehicle**, and choose **Create**.
 
-4. Click the **Settings** toggle at the top of the builder window, change the *Order* to **-10**, and **Save**.
+    ![](images/2023-05-01-10-06-40.png)
+
+1. Click the flask icon at the top left of the builder window and set new test values:
+
+    * table: **x_snc_flt_mgmt_vehicle**
+    * sysId: **fef6b31a1b3819101363ff37dc4bcb9a**
+
+1. Click **Apply**.
+
+    ![](images/2023-05-01-10-09-23.png)
+
+    > You should see the vehicle change to a Ram 1500.
+
+1. **Save** the page.
+
+2. Click the **Settings** toggle at the top of the builder window, change the *Order* to **-10**, and **Save**.
+
+    ![](images/2023-05-01-10-10-44.png)
 
 ## Add an overview tab to the variant
 
 Now you'll add an overview tab to this page showing an over view of the record so you don't need to click into the details or related lists unless something needs to be updated.
+
+1. Click back into the **Editor** toggle.
 
 1. In the content tree, click **Main Tab**.
 
@@ -550,99 +571,121 @@ Now you'll add an overview tab to this page showing an over view of the record s
 
 2. Label it **Overview**, choose **No icon**, and click **Create**.
 
-2. Back in the Config panel of the Main Tab component use the 2x3 vertical dots icon to drag the **Overview** tab above the *Details* tab.
+    ![](images/2023-05-01-10-12-11.png)
+
+3. Back in the Config panel of the Main Tab component use the 2x3 vertical dots icon to drag the **Overview** tab above the *Details* tab.
 
     ![](images/2023-04-21-10-24-45.png)
 
-3. In the content tree on the left, add a new container component to the *Overview (Flex)* tab under the *Main Tab* and label it **Vehicle Info**. Set its styles as follows:
+4. In the content tree on the left, click **Overview (Flex)** and in its *Styles* tab set *Padding* to **Lg (1rem)**
+   
+5. add a new container component to the *Overview (Flex)* tab under the *Main Tab* and label it **Vehicle Info**. Set its styles as follows:
 
     * Type: **Grid**
     * Columns: **2**
     * Rows: **1**
 
-4. Duplicate that container and call the new one **Related Record Info**.
+6. Duplicate that container and call the new one **Related Record Info**.
 
-1. In the Vehicle info container, add an **Image** component.
+    ![](images/2023-05-01-10-14-36.png)
 
-1. It's going to try to use the record controller, but we want to feed it other data than it's expecting, so at the top of the config panel change the dropdown to **None**.
+7. In the Vehicle info container, add an **Image** component.
+
+8. It's going to try to use the record controller, but we want to feed it other data than it's expecting, so at the top of the config panel change the dropdown to **None**.
 
     ![](images/2023-04-21-16-41-36.png)
 
-1. Choose **Remove** in the popup.
+9.  Choose **Remove** in the popup.
 
-1. Set the *Image source* property to **@data.record.form.fields.image.displayValue**. This is data that is already being served to the page, since the image field is on the vehicle form already.
+    > You used preset enabled components like stylized text on the home page in exercise 2 but they behaved differently there. Preset enabled components look for a corresponding controller. If they find one, they automatically configure themselves to use the data from the controller. The record page already has a controller on it, so these preset enabled components are configuring themselves for you. It's nice but you're using them a little differently, so you're removing that preset.
 
-1. Right click on the Image component in the content tree and add a **Container** component after it.
+10. Set the *Image source* property to **@data.record.form.fields.image.displayValue** (don't forget to use dynamic data binding)
 
-1. Configure the container as follows:
+    > This is data that is already being served to the page, since the image field is on the vehicle form already.
+
+11. Right click on the Image component in the content tree and add a **Container** component after it.
+
+    ![](images/2023-05-01-10-17-15.png)
+
+12. Configure the container as follows:
 
     * Type: **Grid**
     * Columns: **2**
     * Rows: **1**
     * Padding: **Lg (1rem)**
 
-1. Add a stylized text component in the container and remove the preset like you did with the image component and then configure it:
+13. Add a stylized text component in the container, remove the preset like you did with the image component, and then configure it:
 
-    * Text: *Mileage**
+    * Text: **Mileage:**
     * HTML Tag: **H2**
 
-2. Duplicate the stylized text component and change the text property to: **@data.record.form.fields.mileage.displayValue**
+14. Duplicate the stylized text component and change the text property to: **@data.record.form.fields.mileage.displayValue**
 
-1. Now do the same thing with 4 more stylized text components for: 
+15. Now do the same thing with 4 more stylized text components for: 
 
-    * Next Tire Rotation: @data.record.form.fields.next_tire_rotation.displayValue
-    * Next Oil Change: @data.record.form.fields.next_oil_change.displayValue
+    * Next Tire Rotation: **@data.record.form.fields.next_tire_rotation.displayValue**
+    * Next Oil Change: **@data.record.form.fields.next_oil_change.displayValue**
 
-    Your container grid should look something like this:
+    Your container grid and page preview should look something like this:
 
-    ![](images/2023-04-21-20-41-03.png)
+    ![](images/2023-05-01-10-25-13.png)
 
-    And your page should look something like this (possibly with different values/vehicle):
+16. **Save** the page and preview it. Does your overview tab show up?
 
-    ![](images/2023-04-21-20-41-48.png)
+## Configure Related Records
 
-2. **Save** the page and preview it. Does your overview tab show up?
+16. Now you're going to add a custom GraphQL data resource to return data about the related records so you can give a real overview of the history of the vehicle on the overview tab. Open the **Data** panel. 
 
-3. Now you're going to add a custom GraphQL data resource to return data about the related records so you can give a real overview of the history of the vehicle on the overview tab. Open the **Data** panel. 
+    ![](images/2023-05-01-10-27-24.png)
 
-4. Click **+Add**, search for and choose **Get Related Vehicle Info GQL**, and click **Add**.
+17. Click **+Add**, search for and choose **Get Related Vehicle Info GQL**, and click **Add**.
 
-    ![](images/2023-04-21-14-19-18.png)
+    ![](images/2023-05-01-10-51-47.png)
 
-5. In the data resource properties, set the *Vehicle SysID* property to **@context.props.sysId**.
+18. In the data resource properties, set the *Vehicle SysID* property to **@context.props.sysId**.
 
-    ![](images/2023-04-21-16-37-01.png)
+    ![](images/2023-05-01-10-52-25.png)
 
     > Note: If you're curious about GraphQL, this application has an enitre GraphQL API setup for it and this data resource does one API call that easily grabs data from four different tables in a very performant way.
 
-6. Add two containers, one after the other, within the *Related Record Info* container. Name them the following:
+19. Add two containers, one after the other, within the *Related Record Info* container. Name them the following:
 
     * Maint requests (maint_requests)
     * Parts (parts)
 
     ![](images/2023-04-25-09-27-04.png)
 
-7. Now you will build out a list of requests and their respective tasks. In the *Maint requests* container, add a stylized text container.
+20. Now you will build out a list of requests and their respective tasks. In the *Maint requests* container, add a **Stylized text** container.
 
-1. Use the preset dropdown to remove the preset and set the text property to: **Maintenance Requests**.
+21. Use the preset dropdown to remove the preset and set the text property to: **Maintenance Requests**.
 
-1. Add a repeater component after the stylized text.
+22. Add a repeater component after the stylized text.
 
-1. Change the *Data array* property to dynamic data binding and then set it to: **@data.get_vehicle_info_gql_1.output.data.xSncFltMgmt.fleet.vehicle.maintReqs**. This should give you a 2 in the green label next to the repeater component.
+23. Change the *Data array* property to dynamic data binding and then set it to: **@data.get_related_vehicle_info_gql_1.output.data.xSncFltMgmt.fleet.vehicle.maintReqs**. This should give you a *3* in the green label next to the repeater component.
 
-1. Click into the styles tab for the repeater and click **Enable styles**. This turns the repeater into a container.
+24. Click into the styles tab for the repeater and click **Enable styles**. This turns the repeater into a container.
 
-2. Add a stylized text component within the repeater. You're going to use a formula to set this stylized text in order to simplify things a bit.
+    ![](images/2023-05-01-10-45-51.png)
 
-1. Switch the *Text* prop to dynamic data binding and then use the CONCAT formula to pull in multiple values: **CONCAT(@item.value.number, ": ", @item.value.shortDescription)**. Set the *HTML tag* to **H3**. To find out more about formulas in UIB, check out the [docs article](https://docs.servicenow.com/bundle/utah-application-development/page/administer/ui-builder/task/add-components.html#title_uib_supported_functions).
+25. Add a **Stylized text** component within the repeater and remove the presets.
 
-1. Add a **Repeater** component after the stylized text component within the existing repeater.
+    > You're going to use a formula to set this stylized text in order to simplify things a bit.
+
+26. Switch the *Text* prop to dynamic data binding and then use the CONCAT formula to pull in multiple values: **CONCAT(@item.value.number, ": ", @item.value.shortDescription)**. Set the *HTML tag* to **H3**. 
+
+    > To find out more about formulas in UIB, check out the [docs article](https://docs.servicenow.com/bundle/utah-application-development/page/administer/ui-builder/task/add-components.html#title_uib_supported_functions).
+
+27. Add a **Repeater** component after the previous stylized text component within the existing repeater.
+
+    ![](images/2023-05-01-10-56-25.png)
 
     > Now you're going to display tasks within the requests. This is really where you start to see the value of having an overview tab like this. You get fields and related records by default, but if your data model is a little more complex than that it's going to involve a lot of clicking. Also, many times when someone navigates to a form they really only need to take a look at the record rather than updating anything. This lets you display lots of information for that type of person without cluttering up the actual form.
 
-2. Set the *Data array* prop to **@item.value.maintTasks**.
+28. Set the *Data array* prop to **@item.value.maintTasks**.
 
-1. Click into the styles tab and add the following to the CSS styles:
+    > Maint tasks is another array within the Maint req array.
+
+29. Click into the **Styles** tab and add the following to the CSS styles:
 
     ```css
    * {
@@ -650,11 +693,19 @@ Now you'll add an overview tab to this page showing an over view of the record s
    }
     ```
 
-2. Add a stylized text component within the repeater.
+    ![](images/2023-05-01-10-58-04.png)
 
-3. Switch the *Text* prop to dynamic data binding and then use the CONCAT formula again: **CONCAT(@item.value.number, ": ", @item.value.shortDescription)**. Set the *HTML tag* to **H4**.
+30. Add a stylized text component within the new repeater.
 
-1. Save and test the page.
+31. Switch the *Text* prop to dynamic data binding and then use the CONCAT formula again: **CONCAT(@item.value.number, ": ", @item.value.shortDescription)**. Set the *HTML tag* to **H4**.
+
+    ![](images/2023-05-01-10-59-20.png)
+
+    > Your page should look something like this:
+
+    ![](images/2023-05-01-11-03-09.png)
+
+32. **Save** and test the page.
 
     > You could make these requests and tasks clickable or add an open button next to them, but in the interest of time we won't be doing that here.
 
@@ -664,8 +715,12 @@ You've listed Maintenance requests and tasks in the left column, so try doing th
 
 You'll want to use the following data bindings:
 
-    * Repeater: @data.get_vehicle_info_gql_1.output.data.xSncFltMgmt.fleet.vehicle.parts
-    * Stylized text: CONCAT(@item.value.serialNumber, ": ", @item.value.partName)
+    * Repeater: **@data.get_related_vehicle_info_gql_1.output.data.xSncFltMgmt.fleet.vehicle.parts**
+    * Stylized text: **CONCAT(@item.value.serialNumber, ": ", @item.value.partName)**
+
+![](images/2023-05-01-11-05-43.png)
+
+![](images/2023-05-01-11-06-30.png)
 
 ## Conclusion
 
