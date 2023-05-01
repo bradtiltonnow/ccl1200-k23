@@ -994,8 +994,6 @@ Here are a couple of resoures that should help with understand declarative actio
 * [Introduction to Declarative Actions](https://www.servicenow.com/community/next-experience-articles/introduction-to-declarative-actions/ta-p/2332003#create)
 * [Open an new UI Builder Tab from Workspace Record page Using Declarative Action](https://www.servicenow.com/community/next-experience-articles/open-an-new-ui-builder-tab-from-workspace-record-page-using/ta-p/2331927)
 
-## Open a new request from the overview tab
-
 # Exercise 5 - Miscellaneous
 
 So far you've modified a landing page and record page, worked with containers, components, properties, events, data resources, client state parameters, actions and buttons, and more! In this exercise you'll touch a few other areas of Workspaces and UIB to add more tools to your toolbox.
@@ -1022,17 +1020,21 @@ In this exercise you're going to add a custom UX Page Property and then referenc
 
 1. Choose **Submit**.
 
-1. Now you can reference that property from any page in your experience. Open the **Dispatcher home** variant of the *Home* page in UI Builder.
+    > Now you can reference that property from any page in your experience. 
 
-1. Click on the **Simple Vehicle List** component in the content tree. 
+2. Switch back to your UI Builder browser tab and open the **Dispatcher home** variant of the *Home* page.
 
-1. In the config panel, change the **Edit filter** property to dynamic data binding.
+    ![](images/2023-05-01-14-25-25.png)
+
+3. Click on the **Vehicle List** component in the content tree. 
+
+4. In the config panel, change the **Edit filter** property to dynamic data binding.
 
     ![](images/2023-04-26-16-25-50.png)
 
-1. In the *filter* prop enter @context.app.vehicleListQuery
+5. In the *filter* prop enter @context.app.vehicleListQuery
 
-1. **Save** the page. The query should remain unchanged and now you can use that encoded query on any other list component in your experience that references the Vehicle table and only have to change the query once.
+6. **Save** the page. The query should remain unchanged and now you can use that encoded query on any other list component in your experience that references the Vehicle table and only have to change the query once.
 
 ## Record watcher
 
@@ -1048,31 +1050,45 @@ Now you'll use some record watcher functionality on the home page. The record wa
 
     * Table: **Maint req**
     * Edit filter conditions: **State | is | Open**
+    * Subscribe: **true**
+
+    ![](images/2023-05-01-14-28-54.png)
 
     > This will cause the data resource to watch for any records that are updated where the state is Open. When that happens the data resource will fire an event. You could do lots of things based on that event like refresh a list or notify the user, and we're going to show an info message.
 
-1. Click into the events tab for the data resource.
+1. Click into the **Events** tab for the data resource.
 
-1. Click **+Add event handler** and choose **Message received**.
+1. Click **+Add event mapping** and choose **Message received**.
 
-1. Choose the **Add alert nofitications** event handler and click **Edit** in *Items* and add the following:
+1. Choose the **Add alert nofitications** event handler.
+
+2. Click **Edit** in *Items* and add the following:
 
     * id: **rw**
     * status: **info**
-    * icon: **circle-info-outline**-
+    * icon: **circle-info-outline**
     * content: **There is a new open request**
     * type: **dismiss**
 
     ![](images/2023-04-26-16-45-10.png)
 
-1. Click **Apply** and you can see the JSON that was generated based on the values you filled out. 
+3. Click **Apply** and you can see the JSON that was generated based on the values you filled out. 
 
-1. Click **Add** and **Save** the page.
+4. Click **Add** (you may need to scroll down) and **Save** the page.
 
-1. To test, open the page in the runtime. Click into a vehicle from the vehicles list on the right hand side of the page. Use the Quick Add Req button to create a new request. Now switch back to the home tab and you should see the blue info message at the top.
+5. To test, open the page in the runtime. Click into a vehicle from the vehicles list on the right hand side of the page. Use the Quick Add Req button to create a new request. Now switch back to the home tab and you should see the blue info message at the top of the page.
 
-## Add another menu item?
+    ![](images/2023-05-01-14-32-09.png)
 
+## Conclusion
+
+I hope this exercise was helpful. UX Page Properties and record watchers are frequent questions we get. If you have additional questions around UI Builder there are a couple of great resources you can try for more help and info.
+
+* [Next Experience](https://www.servicenow.com/community/next-experience-forum/bd-p/next-experience-forum) Form on the ServiceNow Community
+* [#next-experience-uib-workspace](https://sndevs.slack.com/archives/C01QPGCA82K) channel on the indpendently run [SNDevs.com](sndevs.com) slack channel.
+
+<!--
 # Appendix
 
 Instructions on update sets and git
+-->
