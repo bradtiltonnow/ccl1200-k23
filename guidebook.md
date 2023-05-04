@@ -29,24 +29,30 @@ If you're doing this lab during CreatorCon, you'll be working on an instance on 
 
 ## Explore the base version of the app
 
-1. In your instance, go to **Workspaces \> Fleet Vehicle Management**.
+1. First, switch to the *Fleet Vehicle Management* scope by clicking the globe icon in the header (5th icon from the right), click **Applications**, then find and click the **Fleet Vehicle Management** scope. 
+
+    **Note:** You can also switch scope from within UI Builder.
+
+    ![4 steps for opening the photobooth app scope]()
+
+2. In your instance, go to **Workspaces \> Fleet Vehicle Management**.
 
     You'll notice that the homepage is very generic and doesn't really fit our requirements, so you'll be adding a new variant and customizing that. 
 
-1. Click on the list icon in the L1 menu on the left.
+3. Click on the list icon in the L1 menu on the left.
 
     ![](images/2023-04-14-09-43-02.png)
 
     > Notice that the lists that come up on the left could be organized better, which we'll do.
 
-1. There are four primary tables associated with the app.
+4. There are four primary tables associated with the app.
 
    * Vehicle
    * Maintenance requests
    * Maintenance tasks
    * Parts
 
-2. Click into one of the requests.
+5. Click into one of the requests.
 
     > You'll notice the form that comes up just has the two tabs so we'll be enhancing that as well.
 
@@ -87,7 +93,7 @@ In this section you'll do some consolidating of the lists in the workspace.
 
     ![](images/2023-04-27-16-01-40.png)
 
-7. You shoul dbe back looking at the X List Categories related list. In that related list, click into **Maint req**, edit the following, and click **Update**:
+7. You should be back looking at the X List Categories related list. In that related list, click into **Maint req**, edit the following, and click **Update**:
 
     * Name: Maintenance Requests
 
@@ -135,7 +141,7 @@ Now you'll do some form configuration. Since there is only one form view for our
 
     <!-- Insert screenshot -->
 
-6. Drag the **Avitivities (filtered)** formatter to the bottom of the form and choose **Save**.
+6. Drag the **Activities (filtered)** formatter to the bottom of the form and choose **Save**.
 
 7. Go back to the browser tab where the rendered record page is showing and hit refresh. You'll see that the activity stream now shows up on the right.
 
@@ -143,7 +149,7 @@ Now you'll do some form configuration. Since there is only one form view for our
 
 8. Notice that only work notes is accessible in the page. Go back to the table builder tab and add the additional comments field above the activities formatter.
 
-9. Click **Save** and refresh the rendered workspace tab. You should now see the ability to post work notes R comments.
+9. Click **Save** and refresh the rendered workspace tab. You should now see the ability to post work notes and comments.
 
 10. Now let's add email capabilities to the form. In table builder click **Preview** (at the top right next to *Save*).
 
@@ -424,7 +430,7 @@ Now you'll configure the search results. You're going to use a data resource and
 
     ![](images/2023-05-01-09-32-58.png)
 
-1. Now so you can see what's happening in the preview panel, click into the **Vehicle Container** and set the *Test value* property to **false**. This allows you to keep the formula that hides the component, but allows you to see what you're ocnfiguring.
+1. Now so you can see what's happening in the preview panel, click into the **Vehicle Container** and set the *Test value* property to **false**. This allows you to keep the formula that hides the component, but allows you to see what you're configuring.
 
 5. Now add a new container component within the *Vehicle container* and set it to:
 
@@ -579,7 +585,7 @@ Now you'll add an overview tab to this page showing an over view of the record s
 
 4. In the content tree on the left, click **Overview (Flex)** and in its *Styles* tab set *Padding* to **Lg (1rem)**
    
-5. add a new container component to the *Overview (Flex)* tab under the *Main Tab* and label it **Vehicle Info**. Set its styles as follows:
+5. Add a new container component to the *Overview (Flex)* tab under the *Main Tab* and label it **Vehicle Info**. Set its styles as follows:
 
     * Type: **Grid**
     * Columns: **2**
@@ -688,9 +694,9 @@ Now you'll add an overview tab to this page showing an over view of the record s
 29. Click into the **Styles** tab and add the following to the CSS styles:
 
     ```css
-   * {
-       margin-left: 3rem;
-   }
+    * {
+        margin-left: 3rem;
+    }
     ```
 
     ![](images/2023-05-01-10-58-04.png)
@@ -752,7 +758,7 @@ Now you'll add some buttons to the record page that will open a modal to allow y
 
 4. Add an **Input** component to the *Body 1* section.
 
-    ![](2023-05-01-12-58-35.png)
+    ![](images/2023-05-01-12-58-35.png)
 
 1. Set the *Input 1* component's *Label* property to **Short description**.
 
@@ -1087,8 +1093,23 @@ I hope this exercise was helpful. UX Page Properties and record watchers are fre
 * [Next Experience](https://www.servicenow.com/community/next-experience-forum/bd-p/next-experience-forum) Form on the ServiceNow Community
 * [#next-experience-uib-workspace](https://sndevs.slack.com/archives/C01QPGCA82K) channel on the indpendently run [SNDevs.com](sndevs.com) slack channel.
 
-<!--
 # Appendix
 
-Instructions on update sets and git
--->
+## Setting up your PDI for this lab
+
+To learn how to request, access, and manage your Personal Developer Instance, check out [this Guide](https://developer.servicenow.com/dev.do#!/guides/sandiego/developer-program/pdi-guide/personal-developer-instance-guide-introduction).
+
+1. Download and install the app from this Update Set:
+    * [FleetMgmtAppv1.2.xml](files/FleetMgmtAppv1.2.xml)
+
+2. Follow Steps 2a-e in this [Share Guide](https://developer.servicenow.com/dev.do#!/guides/quebec/developer-program/share-guide/share-guide-introduction#downloading-and-installing-a-project) to learn how to import and install an Update Set.
+
+3. After the update set is installed, add the **x_snc_flt_mgmt.user** role to your admin user and logout and back in.
+
+## Finished App
+
+You can find an update set with this lab complete through the likes section of the challenge exercise at: 
+
+## Github Info
+
+You can also find the base application, completed exercises, and the completed app at this github repo:
