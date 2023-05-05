@@ -33,7 +33,7 @@ If you're doing this lab during CreatorCon, you'll be working on an instance on 
 
     **Note:** You can also switch scope from within UI Builder.
 
-    ![4 steps for opening the photobooth app scope]()
+    ![4 steps for opening the photobooth app scope](images/2023-05-05-09-20-55.png)
 
 2. In your instance, go to **Workspaces \> Fleet Vehicle Management**.
 
