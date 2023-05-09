@@ -60,9 +60,11 @@ If you're doing this lab during CreatorCon, you'll be working on an instance on 
 
 1. In the top menu in your instance, which we'll call the *Classic Environment* tab, click **All**, type *UI Builder* into the filter, and click **UI Builder** to launch it in a new tab.
 
+    ![](images/2023-05-08-16-23-01.png)
+
 2. Open the workspace by clicking on **Fleet Vehicle Management** under *Experiences*. You may have to do some sorting or show more rows per page.
 
-  > This will open the experience in UI Builder's experience view. The experience view gives you a holistic view of your experience with all of hte pages and homepages associated with your experience.
+  > This will open the experience in UI Builder's experience view. The experience view gives you a holistic view of your experience with all of the pages and homepages associated with your experience.
 
 ## Consolidate lists
 
@@ -70,58 +72,67 @@ In this section you'll do some consolidating of the lists in the workspace.
 
 1. In the experience view choose the **List default** variant to open the list page in UIB.
 
-1. On the left side of the page you'll see the Content panel with the content tree. In the content tree, click on the **List nav** component to select it.
+    ![](images/2023-05-08-16-23-57.png)
+
+2. On the left side of the page you'll see the Content panel with the content tree. In the content tree, click on the **List nav** component to select it.
 
     ![](images/2023-04-27-12-20-01.png)
 
-2. You'll see the config panel on the right side of your UIB page. This is where each component can be configured by setting its properties, styles, and events. Choose the **Configuration** link at the bottom. This will open the UX List Menu Configurations in a new tab. 
+3. You'll see the config panel on the right side of your UIB page. This is where each component can be configured by setting its properties, styles, and events. Choose the **Configuration** link at the bottom. This will open the UX List Menu Configurations in a new tab. 
 
     ![](images/2023-04-27-12-21-39.png)
    
-3. Choose **Fleet Vehicle Management_menu_config** to open the list configuration for this workspace experience.
+4. Choose **Fleet Vehicle Management_menu_config** to open the list configuration for this workspace experience.
 
-4. In the related lists you'll see the 7 default menu categories and the 13 default lists. 
+5. In the related lists you'll see the 7 default menu categories and the 13 default lists. 
 
-5. Use the **New** button to create a new UX List Category.
+6. Use the **New** button to create a new UX List Category.
 
     ![](images/2023-04-27-16-00-03.png)
 
-6. Give it the following values and choose **Submit**:
+7. Give it the following values and choose **Submit**:
 
     * Title: Administration
     * Order: 1000
 
     ![](images/2023-04-27-16-01-40.png)
 
-7. You should be back looking at the X List Categories related list. In that related list, click into **Maint req**, edit the following, and click **Update**:
+8. You should be back looking at the UX List Categories related list. In that related list, click into **Maint req**, edit the following, and click **Update**:
 
     * Name: Maintenance Requests
 
-8. Click into **Maint task**, edit the following, and click **Update**:
+9.  Click into **Maint task**, edit the following, and click **Update**:
 
     * Name: Maintenance Tasks
     * Order: 200
 
-1. Open the Vehicle item, rename it to **Vehicles** and set the order to 300.
+10. Open the Vehicle item, rename it to **Vehicles**, set the order to 300, and click **Update**.
 
-9.  Click into the **UX Lists** tab.
+11. Now, click into the **UX Lists** tab.
 
-10. Use list editing (double-click next to a value in the same cell on the list) to change the *Category* of each of the following UX Lists to **Administration** and the titles to match their table names:
+    ![](images/2023-05-08-16-30-45.png)
 
-    * Parts
+1. Find the UX List record for the *Part* table. Double click in the *Title* list cell next to *All*.
+
+    ![](images/2023-05-08-16-36-00.png)
+
+1. Rename it from *All* to **Parts**.
+
+    ![](images/2023-05-08-16-37-08.png)
+
+1. On the same record, use list editing to change its *Category* from *Part* to **Administration**.
+
+2.  Now use list editing the same way you did previously to change the *Category* of each of the following UX Lists to **Administration** and the titles to match their table names:
+
     * Part reference
     * Manufacturers
     * Models
 
-    ![](images/2023-04-27-16-13-10.png)
+    It should look like this when you're done (I filtered out the other lists):
 
-    ![](images/2023-04-27-16-13-48.png)
+    ![](images/2023-05-08-16-42-12.png)
 
-    It should look like this when you're done:
-
-    ![](images/2023-04-27-16-14-57.png)
-
-11. Now switch back to the classic environment tab, and go back to the list view (go to the fleet management workspace and click the list icon on the left menu) for the workspace from the previous exercise and do a refresh. You should see the new list structure.
+3.  Now switch back to the classic environment tab (with the all menu), go back to the list view (go to the fleet management workspace and click the list icon on the left menu) for the workspace from the previous exercise and do a browser refresh. You should see the new list structure.
 
 ## Configure the form
 
@@ -129,33 +140,45 @@ Now you'll do some form configuration. Since there is only one form view for our
 
 1. If you still have the list page open in your UI Builder tab, use the dropdown at the top to switch to the **Record page**. If you don't see the UI Builder preview for the page click the **Editor** pill at the top.
 
+    ![](images/2023-05-08-16-52-36.png)
+
 2. Click **Open** at the top right to open the page in runtime in a new tab for testing. You'll see that it's missing the activity stream component and email functionality. Let's add it.
+
+    ![](images/2023-05-08-16-56-40.png)
 
 3. Back in your UI Builder tab, find and click on the **Form** component in the content tree on the left.
 
     ![](images/2023-04-27-16-23-50.png)
 
-4. In the config panel on the right, scroll down to the bottom abd click **Edit form view** to open table builder in a new tab.
+4. In the config panel on the right, scroll down to the bottom abd click **Edit form view** to open form builder in a new tab.
+
+    > You may see *undefined* in place of actual field names on the form, which is a bug in the current version of form builder. Lucky for us, it really only matters that you add things to the form, not where they are on the form.
 
 5. At the top left, click **More** and choose **Formatters**.
 
-    <!-- Insert screenshot -->
+    ![](images/2023-05-08-19-53-56.png)
 
 6. Drag the **Activities (filtered)** formatter to the bottom of the form and choose **Save**.
+
+    ![](images/2023-05-08-19-54-52.png)
 
 7. Go back to the browser tab where the rendered record page is showing and hit refresh. You'll see that the activity stream now shows up on the right.
 
     > Note that there is a check on the workspace side of things that checks to see if the activity formatter is present and then shows the acitivty stream component if so. It doesn't matter where you add the activity formatter in table builder, it will always show in the same place on the UIB page unless you edit the UIB page and move it.
 
-8. Notice that only work notes is accessible in the page. Go back to the table builder tab and add the additional comments field above the activities formatter.
+8. Notice that only work notes is accessible in the page. Go back to the form builder tab and add the additional comments field above the activities formatter.
 
-9. Click **Save** and refresh the rendered workspace tab. You should now see the ability to post work notes and comments.
+    ![](images/2023-05-08-19-58-49.png)
 
-10. Now let's add email capabilities to the form. In table builder click **Preview** (at the top right next to *Save*).
+9.  Click **Save** and refresh the rendered workspace tab. You should now see the ability to post work notes and comments.
+
+10. Now let's add email capabilities to the form. In form builder click **Preview** (at the top right next to *Save*).
+
+    ![](images/2023-05-08-20-01-18.png)
 
 11. In the view that comes up click **Open form in Platform** at the very top right.
 
-12. Right lick on the form header and choose **Configure > Dictionary**.
+12. Right click on the form header and choose **Configure > Dictionary**.
 
   ![](images/2023-04-27-16-28-37.png)
 
@@ -274,7 +297,7 @@ A page variant in UI Builder is a variation of a page that exists at the same pa
     * Label: Request List
     * ID: request_list
 
-    ![](images/2023-05-01-08-42-39.png)
+    ![](images/2023-05-08-20-13-13.png)
 
 3.  In the config panel, configure as follows:
 
@@ -297,7 +320,7 @@ A page variant in UI Builder is a variation of a page that exists at the same pa
 
 7.  Now you'll need to pass in dynamic data to the event handlers properties. Mouse over the *table* property and click the **Bind data** icon.
 
-    ![](images/2023-04-18-13-24-46.png)
+    ![](images/2023-05-08-20-17-44.png)
 
 8.  Set the value to **@payload.table**
 
@@ -315,21 +338,22 @@ A page variant in UI Builder is a variation of a page that exists at the same pa
 
     > The links should open those records in a new workspace tab. Also notice the pagination and filtering that come along with this highly configurable component.
 
-1. Go back to the UI Builder tab.
+13. Go back to the UI Builder tab.
 
-13. Now right-click on the **Request List** component in the content tree and choose **Duplicate**.
+14. Now right-click on the **Request List** component in the content tree and choose **Duplicate**.
 
-14. Rename the component **Vehicle List** and **vehicle_list**.
+15. Rename the component **Vehicle List** and **vehicle_list**.
 
-15. Configure the component as follows:
+16. Configure the component as follows:
 
     * Table: **Vehicle**
     * Columns: **number | vehicle_name | mileage | next_oil_change | next_tire_rotation**
     * Edit filter: **Next oil change | on | This quarter OR Next tire rotation | on | This quarter**
+    ![](images/2023-05-08-20-21-58.png)
     * Title: **Vehicles this quarter**
     * Pagination \> Maximum rows: **20**
 
-1. **Save** and test the page. 
+17. **Save** and test the page. 
 
     > Do the links work? They should work similarly to the previous list because the event handlers copied over when you duplicated the list. Because we kept them dynamic they'll also work with the new list.
 
@@ -339,7 +363,7 @@ Now you're going to add a vehicle search to the homepage so the dispatcher can e
 
 1. In your UI Builder tab, inside the empty *Row 2* container, add another **Container** component and rename it **Search container**.
 
-    > You'll notice we're doing a lot of renaming. The main reason for this is to make life easier on yourself when you or someone else comes back to this page in 6 months and needs to change something in a complex content tree. Renaming makes it easier to target specific components and to know thheir purpose.
+    > You'll notice we're doing a lot of renaming. The main reason for this is to make life easier on yourself when you or someone else comes back to this page in 6 months and needs to change something in a complex content tree. Renaming makes it easier to target specific components and know their original purpose. You can think of component renaming as a form of documentation.
 
 2. Add another container by right-clicking on the Search container and choosing **Add component after**. Call it **Vehicle container**. Your Row 2 container should look like this in the content tree at this point:
 
@@ -376,7 +400,7 @@ Now you're going to add a vehicle search to the homepage so the dispatcher can e
 
 8. Click **Apply**.
 
-9.  You're going to display search results inside the Vechile container, but first you're going to show/hide that container based on whether the searchTerm parameter is empty or not. Click on the **Vehicle container (flex)** in the content tree.
+9.  You're going to display search results inside the Vehicle container, but first you're going to show/hide that container based on whether the searchTerm parameter is empty or not. Click on the **Vehicle container (flex)** in the content tree.
 
 10. In the config panel for the container on the right, there is a very small eye icon at the top right of the panel that toggles the component visibility properties. Click it.
 
@@ -417,7 +441,7 @@ Now you'll configure the search results. You're going to use a data resource and
     * Use the (i) to change the label to **Look Up Vehicles** and the ID to **look_up_vehicles**.
     * When to evaluate this data resource: **Only when invoked (explicit)**
     * Table: **Vehicle**
-    * Edit conditions: **Vehicle name | contains | <ddb> @state.searchTerm** OR **License plate | contains | <ddb> @state.searchTerm**
+    * Edit conditions: **Vehicle name | contains | <ddb> @state.searchTerm** OR **License plate | contains | <ddb> @state.searchTerm** (You'll need to toggle to data binding for the values)
     * Return fields: **Vehicle name | license_plate**
     * Order by: **Vehicle name**
     * Max results: **10**
@@ -432,7 +456,9 @@ Now you'll configure the search results. You're going to use a data resource and
 
 1. Now so you can see what's happening in the preview panel, click into the **Vehicle Container** and set the *Test value* property to **false**. This allows you to keep the formula that hides the component, but allows you to see what you're configuring.
 
-5. Now add a new container component within the *Vehicle container* and set it to:
+    ![](images/2023-05-09-10-34-25.png)
+
+2. Now add a new container component within the *Vehicle container* and set it to:
 
     * Component label: (click the i icon) **List header container**
     * Type: **Grid**
@@ -440,53 +466,52 @@ Now you'll configure the search results. You're going to use a data resource and
     * Rows: **1**
     * Padding: **Lg (1rem)**
 
-    ![](images/2023-05-01-09-35-28.png)
+    ![](images/2023-05-09-10-38-29.png)
 
-6. Add a stylized text component within the container component and fill it out:
+3. Add a stylized text component within the container component and fill it out:
 
     * Presets: **None**
     * Text: **Vehicle name**
     * HTML tag: **H2**
 
-7. Duplicate the stylized text component you just added and set the text to **License plate**.
+4. Duplicate the stylized text component you just added and set the text to **License plate**.
 
-8. Right-click **List header container (Grid)**, choose add component after, and add a **Repeater** component.
+5. Right-click **List header container (Grid)**, choose add component after, and add a **Repeater** component.
 
     ![](images/2023-05-01-09-39-49.png)
 
-9.  In the Repeater's config panel, change the *Data array* property to dynamic data binding and enter: **@data.look_up_vehicles.results**. You should see a little green 10 next to the repeater component in the content tree since you're returning 10 results from the data resource.
+6.  In the Repeater's config panel, change the *Data array* property to dynamic data binding and enter: **@data.look_up_vehicles.results**. You should see a little green 10 next to the repeater component in the content tree since you're returning 10 results from the data resource.
 
     ![](images/2023-05-01-09-41-59.png)
 
-10. Add another **Container** inside the repeater calling it **List container** and styling it the same as the *List header container* from the last step.
+7.  Add another **Container** inside the repeater calling it **List container** and styling it the same as the *List header container* from the last step.
 
     * Type: **Grid**
     * Columns: **3**
     * Rows: **1**
     * Padding: **Lg (1rem)**
 
-11. Within that container add a stylized text component with the following values:
+8.  Within that *List container* add a stylized text component with the following values:
 
     * Presets: **None**
-    * Text: **@item.value.vehicle_name.value**
+    * Text: **@item.value.vehicle_name.value** (switch to data binding)
     * HTML tag: **H4**
 
     > @item.value targes the item in the array from the repeater. Note that the repeater is only showing you the first result in the preview panel, even though you can see there are 10 results on the left. This is both for performance reasons and to reduce clutter on the page.
 
-12. Duplicate that stylized text component to another and give it text of: **@item.value.license_plate.value**
+9.  Duplicate that stylized text component to another and give it text of: **@item.value.license_plate.value**. Note that you'll need to click into the new component after you duplicate.
 
-13. Add a **Button** component after the stylized text component with the following values:
+10. Add a **Button** component after the stylized text component and set its *Label* to **Create New Maint Request**.
 
-    * Label: **Create New Maint Request**
-    * <click into styles tab> Padding: **Lg (1rem)**
+11. Click into the *Styles* tab and set *Padding* to **Lg (1rem)**.
 
-14. In the *Events* tab add a new event handler to the *Button clicked* event.
+12. In the *Events* tab add a new event handler to the *Button clicked* event.
 
-15. Choose **Link to destination** and change the *Mode* from *Form* to **Script**.
+13. Choose **Link to destination** and change the *Mode* from *Form* to **Script**.
 
     ![](images/2023-05-01-09-48-02.png)
 
-16. You'll paste the following script from [Exercise2.txt](files/Exercise2.txt):
+14. You'll paste the following script from [Exercise2.txt](files/Exercise2.txt):
 
     ```javascript
     /**
@@ -516,11 +541,11 @@ Now you'll configure the search results. You're going to use a data resource and
 
     > You're using a script for this in order to build the query param. You can pass a query to the record page to prepopulate values, similar to the classic environment. In this script you're linking to the record page with a sys_id of -1, which means you're populating a new record.
 
-18. Click **Apply**. 
+15. Click **Add**. 
 
-17. Click back into **Vehicle Container (Flex)** and set the *Test value* back to **None**.
+16. Click back into **Vehicle Container (Flex)** and set the *Test value* back to **None**.
 
-19. **Save** the page and open it in the runtime to test. Search for a Ford Mustang and click the **Create New Maint Request** button. It should open the request in a new tab while prepopulating the vehicle record in the request.
+17. **Save** the page and open it in the runtime to test. Search for a Ford Mustang and click the **Create New Maint Request** button. It should open the request in a new tab while prepopulating the vehicle record in the request.
 
 This isn't the prettiest page in the world, and maybe even isn't all that practical, but hopefully it gives you an idea of some of what you can accomplish on a landing page like this. 
 
@@ -540,28 +565,30 @@ The next requirement is to customize the vehicle record page and give it an over
 
 3. Name it **Vehicle Record**, set the conditions to **table=x_snc_flt_mgmt_vehicle**, and choose **Create**.
 
+    > In the conditions the text mentions 'fields', but it's really talking about required url parameters. Since you're passing table and sys_id to the page through the URL you can use those params to make a decision on which variant is served up.
+
     ![](images/2023-05-01-10-06-40.png)
 
-1. Click the flask icon at the top left of the builder window and set new test values:
+4. Click the flask icon at the top left of the builder window and set new test values:
 
     * table: **x_snc_flt_mgmt_vehicle**
     * sysId: **fef6b31a1b3819101363ff37dc4bcb9a**
 
-1. Click **Apply**.
+5. Click **Apply**.
 
     ![](images/2023-05-01-10-09-23.png)
 
-    > You should see the vehicle change to a Ram 1500.
+    > You should see the vehicle change to 2019 Ram 1500.
 
-1. **Save** the page.
+6. **Save** the page.
 
-2. Click the **Settings** toggle at the top of the builder window, change the *Order* to **-10**, and **Save**.
+7. Click the **Settings** toggle at the top of the builder window, change the *Order* to **-10**, and **Save**.
 
     ![](images/2023-05-01-10-10-44.png)
 
 ## Add an overview tab to the variant
 
-Now you'll add an overview tab to this page showing an over view of the record so you don't need to click into the details or related lists unless something needs to be updated.
+Now you'll add an overview tab to this page showing an overview of the record so you don't need to click into the details or related lists unless something needs to be updated.
 
 1. Click back into the **Editor** toggle.
 
@@ -681,6 +708,8 @@ Now you'll add an overview tab to this page showing an over view of the record s
 
     > To find out more about formulas in UIB, check out the [docs article](https://docs.servicenow.com/bundle/utah-application-development/page/administer/ui-builder/task/add-components.html#title_uib_supported_functions).
 
+    ![](images/2023-05-09-12-12-15.png)
+
 27. Add a **Repeater** component after the previous stylized text component within the existing repeater.
 
     ![](images/2023-05-01-10-56-25.png)
@@ -738,7 +767,7 @@ Now you'll add some buttons to the record page that will open a modal to allow y
 
 ## Create the Quick Add Modal
 
-1. Swith back to your UI Builder browser tab.
+1. Switch back to your UI Builder browser tab and the Vehicle Record page variant.
 
 1. At the very top of the content tree, expand the **Modals** option and click the **+** icon to the right.
 
@@ -813,11 +842,11 @@ Now you'll add some buttons to the record page that will open a modal to allow y
 
     ![](images/2023-05-01-13-08-48.png)
 
-    > You're telling the button to be disbaled if the reqShortDescription state parameter is empty.
+    > You're telling the button to be disabled if the reqShortDescription state parameter is empty.
 
 22. **Save** the page.
 
-23. Click the **Body** container in the content tree to open the *Page configuration* panel where you'd normally configure and style containes and components.
+23. Click the **Body** container in the content tree to open the *Page configuration* panel where you'd normally configure and style containers and components.
     
 24. Click the **Events** tab in the *Page configuration* panel.
 
@@ -853,7 +882,7 @@ Now you'll add some buttons to the record page that will open a modal to allow y
 
 32. **Save** the page and test it in the runtime.
 
-33. Click the **Quick Add Request** button, add something to the short description, tab out, and click **Create Request**. When you refresh the page you should see your new request in there. This is nice, but you should probably close the modal and auto-refresh the page, so let's do that.
+33. Click the **Quick Add Request** button, add something to the short description, tab out, and click **Create Request**. When you refresh the page you should see your new request in there. This is nice, but the modal should probably automatically close and auto-refresh the page, so let's do that.
 
 34. Back in UIB, open the Data panel.
 
@@ -915,6 +944,8 @@ In this section you'll add a button to the form's action bar that also triggers 
     * Label: **Quick Add Request**
     * Applicable To: **Form**
 
+    ![](images/2023-05-09-15-58-16.png)
+
 5. Choose **Submit**. This will create the new action payload definition and populate it in to the original form you're filling out.
 
 6. Fill out the rest of the Action Assignment form as follows:
@@ -922,23 +953,23 @@ In this section you'll add a button to the form's action bar that also triggers 
     * Action label: **Quick Add Req**
     * Action name: **flt_mgmt_quick_add_req**
 
-1. Right-click on the form header and choose **Save**.
+7. Right-click on the form header and choose **Save**.
 
     ![](images/2023-05-01-13-47-51.png)
 
-1. Click into the **Action Configurations** related list and click **Edit**.
+8. Click into the **Action Configurations** related list and click **Edit**.
 
     ![](images/2023-05-01-13-48-33.png)
 
-1. Move the **Fleet Mgmt Action Config** from the left to the right of the slushbucket and **Save**.
+9. Move the **Fleet Mgmt Action Config** from the left to the right of the slushbucket and **Save**.
 
     ![](images/2023-04-26-11-52-11.png)
 
-2. Click in to the **UX Add-on Event Mappings** related list and click **New**.
+10. Click in to the **UX Add-on Event Mappings** related list and click **New**.
 
     ![](images/2023-05-01-13-49-47.png)
 
-1. Fill out the form:
+11. Fill out the form:
 
     * Event Mapping Name: **Quick Add Request**
     * Source element ID: **ui_action_bar**
@@ -947,28 +978,28 @@ In this section you'll add a button to the form's action bar that also triggers 
 
     > This is what connects the action bar button to the handled event you created earlier in UIB. 
 
-3. Click **Submit**
+12. Click **Submit**
 
-4. Now you'll need to create a form action record, form action layout, and form action layout item. Close this browser tab and go back to the *Classic environment* tab that has the blue header menu with All, Favorites, etc.
+13. Now you'll need to create a form action record, form action layout, and form action layout item. Close this browser tab and go back to the *Classic environment* tab that has the blue header menu with All, Favorites, etc.
 
     ![](images/2023-05-01-13-52-01.png)
 
-5. Go to the **All** menu at the top and choose **UX Form Actions**.
+14. Go to the **All** menu at the top and choose **UX Form Actions**.
 
     ![](images/2023-04-26-11-54-26.png)
 
-6. Click **New** and fill out the form: 
+15. Click **New** and fill out the form: 
 
     * Name: **Quick Add Req**
     * Action Type: **Declarative Action**
     * Table: **Vehicle \[x_snc_flt_mgmt_vehicle\]** (Do this before filling out the next field)
     * Declarative Action: **flt_mgmt_quick_add_req**
 
-7. Choose **Submit**.
+16. Choose **Submit**.
 
-8. From the **All** menu, go to **UX Form Action Layouts**. 
+17. From the **All** menu, go to **UX Form Action Layouts**. 
    
-9.  In the list that comes up, click the **New** button and fill out the form:
+18. In the list that comes up, click the **New** button and fill out the form:
 
     * Name: **Vehicle Form Action Layout**
     * Table: **Vehicle**
@@ -976,20 +1007,20 @@ In this section you'll add a button to the form's action bar that also triggers 
 
     > You'll need a UX Form Action Layout record for every *table* where you want to add actions. If you wanted to add more actions to the vehicle table you would not need to recreate this record.
 
-10. Right-click on the header and **Save** the record becuase you'll need to edit the record's related lists.
+19. Right-click on the header and **Save** the record becuase you'll need to edit the record's related lists.
 
     ![](images/2023-05-01-13-59-17.png)
 
-11. In the *UX Form Action Layout Items* related list, click **New**:
+20. In the *UX Form Action Layout Items* related list, click **New**:
 
     * Name: **Quick Add Req**
     * Label: **Quick Add Req**
     * Table: **Vehicle \[x_snc_flt_mgmt_vehicle\]**
     * Action: **Quick Add Req**
 
-12. **Submit** the form.
+21. **Submit** the form.
 
-13. Open or refresh the vehicle record page in the runtime and you should now see your declarative action in the actions bar. Clicking it should pop the modal open.
+22. Open or refresh the vehicle record page in the runtime and you should now see your declarative action in the actions bar. Clicking it should pop the modal open.
 
     ![](images/2023-05-01-14-03-33.png)
 
@@ -1008,7 +1039,7 @@ So far you've modified a landing page and record page, worked with containers, c
 
 If you're working with workspaces, you may eventually run into something you'll need to configure through UX Page Properties, although we're trying to keep people in UIB as much as possible. UX Page Properties are basically metadata configurations unique to each instance. This lets the workspace app shell look at the UX Page Properties and show things like tabs and menus rather than having to hardcode it into components. You can find out more about UX Page Properties and which ones come with the workspace app shell in the [Workspace App Shell UX Page Properties](https://www.servicenow.com/community/next-experience-articles/workspace-app-shell-ux-page-properties/ta-p/2331956) COE article.
 
-In this exercise you're going to add a custom UX Page Property and then reference it from a UI Builder page. This is espeically useful if you want to define something once and then reuse it across multiple places, not unlike system properties. In this exercise you'll create a UX Page Property that holds an encoded query that you can apply to a list component.
+In this exercise you're going to add a custom UX Page Property and then reference it from a UI Builder page. This is espeically useful if you want to define something once and then reuse it across multiple pages, not unlike system properties. In this exercise you'll create a UX Page Property that holds an encoded query that you can apply to a list component.
 
 1. Start by switching over to your classic environment tab and going to **All > Now Experience Framework > Experiences**
 
@@ -1034,25 +1065,25 @@ In this exercise you're going to add a custom UX Page Property and then referenc
 
 3. Click on the **Vehicle List** component in the content tree. 
 
-4. In the config panel, change the **Edit filter** property to dynamic data binding.
+4. In the config panel, change the **Edit filter** property to data binding.
 
     ![](images/2023-04-26-16-25-50.png)
 
-5. In the *filter* prop enter @context.app.vehicleListQuery
+5. In the *filter* prop enter **@context.app.vehicleListQuery**.
 
-6. **Save** the page. The query should remain unchanged and now you can use that encoded query on any other list component in your experience that references the Vehicle table and only have to change the query once.
+6. **Save** the page. The query should remain unchanged and now you can use that encoded query on any other list component in your experience that references the Vehicle table and only have to change the query once in a central location.
 
 ## Record watcher
 
-Now you'll use some record watcher functionality on the home page. The record watcher data resource is very powerful and easy to use, but can also easily affect your instance's performance, so you'll want to be careful using it. Think about how many pages it'll be used on and how large the tables are that you'll be watching.
+Now you'll use some record watcher functionality on the home page. The record watcher data resource is very powerful and easy to use, but can also affect your instance's performance, so you'll want to be careful using it. Think about how many pages it'll be used on and how large the tables are that you'll be watching.
 
 1. On the *Dispatcher home* variant in UIB, open the Data resources panel.
 
-1. Click **+Add** and search for and choose the Record Watcher data resource.
+2. Click **+Add** and search for and choose the Record Watcher data resource.
 
     ![](images/2023-04-26-16-31-44.png)
 
-1. Fill it out as follows:
+3. Fill it out as follows:
 
     * Table: **Maint req**
     * Edit filter conditions: **State | is | Open**
@@ -1062,13 +1093,13 @@ Now you'll use some record watcher functionality on the home page. The record wa
 
     > This will cause the data resource to watch for any records that are updated where the state is Open. When that happens the data resource will fire an event. You could do lots of things based on that event like refresh a list or notify the user, and we're going to show an info message.
 
-1. Click into the **Events** tab for the data resource.
+4. Click into the **Events** tab for the data resource.
 
-1. Click **+Add event mapping** and choose **Message received**.
+5. Click **+Add event mapping** and choose **Message received**.
 
-1. Choose the **Add alert nofitications** event handler.
+6. Choose the **Add alert nofitications** event handler.
 
-2. Click **Edit** in *Items* and add the following:
+7. Click **Edit** in *Items* and add the following:
 
     * id: **rw**
     * status: **info**
@@ -1078,11 +1109,11 @@ Now you'll use some record watcher functionality on the home page. The record wa
 
     ![](images/2023-04-26-16-45-10.png)
 
-3. Click **Apply** and you can see the JSON that was generated based on the values you filled out. 
+8. Click **Apply** and you can see the JSON that was generated based on the values you filled out. 
 
-4. Click **Add** (you may need to scroll down) and **Save** the page.
+9. Click **Add** (you may need to scroll down) and **Save** the page.
 
-5. To test, open the page in the runtime. Click into a vehicle from the vehicles list on the right hand side of the page. Use the Quick Add Req button to create a new request. Now switch back to the home tab and you should see the blue info message at the top of the page.
+10. To test, open the page in the runtime. Click into a vehicle from the vehicles list on the right hand side of the page. Use the Quick Add Req button to create a new request. Now switch back to the home tab and you should see the blue info message at the top of the page.
 
     ![](images/2023-05-01-14-32-09.png)
 
@@ -1095,7 +1126,7 @@ I hope this exercise was helpful. UX Page Properties and record watchers are fre
 
 # Appendix
 
-## Setting up your PDI for this lab
+## Setting up your PDI for this lab with Update Sets
 
 To learn how to request, access, and manage your Personal Developer Instance, check out [this Guide](https://developer.servicenow.com/dev.do#!/guides/sandiego/developer-program/pdi-guide/personal-developer-instance-guide-introduction).
 
@@ -1106,10 +1137,8 @@ To learn how to request, access, and manage your Personal Developer Instance, ch
 
 3. After the update set is installed, add the **x_snc_flt_mgmt.user** role to your admin user and logout and back in.
 
-## Finished App
+You can find an update set with this lab at: [FleetMgmtAppvComplete.xml](files/FleetMgmtAppvComplete.xml)
 
-You can find an update set with this lab complete through the likes section of the challenge exercise at: 
+## Setting up your PDI for this lab with Github
 
-## Github Info
-
-You can also find the base application, completed exercises, and the completed app at this github repo:
+You can also find the base application, completed exercises, and the completed app in different branches of this github repo: [k23-CCL1200-K23-app](https://github.com/ServiceNowEvents/k23-CCL1200-K23-app). You can fork the repo and then pull the main branch of the app into your PDI to start.
