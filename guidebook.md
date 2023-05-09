@@ -1137,7 +1137,7 @@ To learn how to request, access, and manage your Personal Developer Instance, ch
 
 3. After the update set is installed, add the **x_snc_flt_mgmt.user** role to your admin user and logout and back in.
 
-You can find an update set with this lab at: [FleetMgmtAppvComplete.xml](files/FleetMgmtAppvComplete.xml)
+You can find an update set with this lab at: [FleetMgmtAppComplete.xml](files/FleetMgmtAppComplete.xml)
 
 ## Setting up your PDI for this lab with Github
 
